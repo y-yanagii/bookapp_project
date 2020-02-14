@@ -20,11 +20,19 @@
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     </head>
-    <body>
-        <div class="container">
-            <div class="alert alert-primary" role="alert">
-                A simple primary alert—check it out!
+    <body style='background-image: url("https://picsum.photos/600/600");'>
+        <div class="container w-100">
+            <div class="mt-3 float-right">
+                <button class="btn btn-success">New</button>
             </div>
+            <div>Book Management</div>
+            <form action="/" method="post" class="mt-5 pt-5">
+                <div class="row mt-5 pt-5 form-group float-right">
+                    <input id="user_id" class="mt-3 form-control col-sm-10" type="text" name="user_id" placeholder="UserId">
+                    <input id="password" class="mt-2 form-control col-sm-10" type="password" name="password" placeholder="PassWord">
+                    <button class="btn btn-primary mt-3 col-sm-10" type="submit">Sign in</button>
+                </div>
+            </form>
         </div>
         <script src="{{ asset('js/app.js') }}"></script>
     </body>
