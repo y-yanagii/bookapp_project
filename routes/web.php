@@ -15,4 +15,4 @@
 //     return view('welcome');
 // });
 Route::get('/', 'LoginController@index');
-Route::post('/books', 'BookController@index');
+Route::get('/books', 'BooksController@index');

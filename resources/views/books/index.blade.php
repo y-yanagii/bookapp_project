@@ -23,7 +23,7 @@
     <body>
         <div class="container w-100">
         @foreach ($users as $user)
-            <p>$user->name</p>
+            <p>{{$user->name}}</p>
         @endforeach
         </div>
         <script src="{{ asset('js/app.js') }}"></script>
