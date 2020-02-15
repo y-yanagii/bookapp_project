@@ -27,6 +27,7 @@
             </div>
             <div>Book Management</div>
             <form method="get" action="{{ url('/books') }}" class="mt-5 pt-5">
+            {{ csrf_field() }}
                 <div class="row mt-5 pt-5 form-group float-right">
                     <input id="name" class="mt-3 form-control col-sm-10" type="text" name="name" placeholder="UserName">
                     <input id="password" class="mt-2 form-control col-sm-10" type="password" name="password" placeholder="PassWord">

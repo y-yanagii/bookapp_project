@@ -21,10 +21,25 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     </head>
     <body>
-        <div class="container w-100">
-        @foreach ($users as $user)
-            <p>{{$user->name}}</p>
-        @endforeach
+        <!-- Hedder領域 -->
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2">
+                    <h2 class="text-success m-2">本棚一覧</h2>
+                </div>
+                <div class="col-lg-10">
+                <button class="btn btn-dark m-2 float-right" href="{{ url('LoginController@logout') }}">ログアウト</button>
+                    <button class="btn btn-success m-2 float-right" href="{{ url('BooksController@new') }}">本登録</button>
+                </div>
+            </div>
+        </div>
+        <!-- メニューリスト領域一覧領域 -->
+        <div class="container bg-success">
+
+        </div>
+        <!-- Fotter領域 -->
+        <div class="container bg-dark">
+
         </div>
         <script src="{{ asset('js/app.js') }}"></script>
     </body>
