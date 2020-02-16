@@ -34,8 +34,53 @@
             </div>
         </div>
         <!-- メニューリスト領域一覧領域 -->
-        <div class="container bg-success">
-
+        <div class="container" style="height: 700px;">
+            <table class="table table-hover">
+                <thead>
+                    <tr style="background-color: aqua;">
+                        <th>#</th>
+                        <th>タイトル</th>
+                        <th>登録者</th>
+                        <th>購入区分</th>
+                        <th>進捗率</th>
+                        <th>更新日時</th>
+                        <th>×</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Laravel入門</td>
+                        <td>柳澤　良幸</td>
+                        <td>購入済み</td>
+                        <td>45%</td>
+                        <td>2020/02/14 15:00</td>
+                        <td><a>🗑削除</a></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Laravel入門</td>
+                        <td>柳澤　良幸</td>
+                        <td>購入済み</td>
+                        <td>45%</td>
+                        <td>2020/02/14 15:00</td>
+                        <td><a>🗑削除</a></td>
+                    </tr>
+                </tbody>
+            </table>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-end">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">Next</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
         <!-- Fotter領域 -->
         <div class="container bg-dark">
