@@ -23,7 +23,41 @@
     <body style='background-image: url("https://picsum.photos/600/600");'>
         <div class="container w-100">
             <div class="mt-3 float-right">
-                <button class="btn btn-success">New</button>
+                <!-- <button class="btn ">New</button> -->
+
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">New</button>
+                <!-- モーダル部分 -->
+                <!-- ↓↓↓新規登録モーダル部分↓↓↓ -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">New user registration</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                            <div class="form-group">
+                                <label for="name" class="col-form-label">UserName:</label>
+                                <input type="text" class="form-control" id="name">
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="col-form-label">PassWord:</label>
+                                <input type="password" class="form-control" id="password">
+                            </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Register</button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ↑↑↑新規登録モーダル部分↑↑↑ -->
+
             </div>
             <div>Book Management</div>
             <form method="get" action="{{ url('/books') }}" class="mt-5 pt-5">
@@ -35,6 +69,19 @@
                 </div>
             </form>
         </div>
-        <script src="{{ asset('js/app.js') }}"></script>
+        <script src="{{ asset('js/app.js') }}">
+
+            // Newボタン押下時のモーダル表示処理
+            $('#exampleModal').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget) // Button that triggered the modal
+                var recipient = button.data('whatever') // Extract info from data-* attributes
+                // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+                // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+                var modal = $(this)
+                // ログイン画面からログイン名などを取得してくる処理をコメントアウト
+                // modal.find('.modal-title').text('New message to ' + recipient)
+                // modal.find('.modal-body input').val(recipient)
+            });
+        </script>
     </body>
 </html>
