@@ -24,10 +24,26 @@
         <!-- Hedder領域 -->
         <div class="container">
             <div class="row">
+                <!-- タイトル領域 -->
                 <div class="col-lg-2">
-                    <h2 class="text-success m-2">本棚一覧</h2>
+                    <h2 class="text-success m-2">Bookshelf</h2>
                 </div>
-                <div class="col-lg-10">
+
+                <!-- 絞り込みラジオボタン領域 -->
+                <div class="col-lg-3 my-2 btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-info active">
+                        <input type="radio" name="options" id="option1" autocomplete="off" checked> 全て
+                    </label>
+                    <label class="btn btn-info">
+                        <input type="radio" name="options" id="option2" autocomplete="off"> 購入前
+                    </label>
+                    <label class="btn btn-info">
+                        <input type="radio" name="options" id="option3" autocomplete="off"> 購入後
+                    </label>
+                </div>
+
+                <!-- 新規登録、ログアウトボタン領域 -->
+                <div class="col-lg-7">
                 <button class="btn btn-dark m-2 float-right" href="{{ url('LoginController@logout') }}">ログアウト</button>
                     <button class="btn btn-success m-2 float-right" href="{{ url('BooksController@new') }}">本登録</button>
                 </div>
@@ -37,13 +53,13 @@
         <div class="container" style="height: 700px;">
             <table class="table table-hover">
                 <thead>
-                    <tr style="background-color: aqua;">
+                    <tr class="bg-info">
                         <th>#</th>
-                        <th>タイトル</th>
-                        <th>登録者</th>
-                        <th>購入区分</th>
-                        <th>進捗率</th>
-                        <th>更新日時</th>
+                        <th>Title</th>
+                        <th>Registered person</th>
+                        <th>Purchase type</th>
+                        <th>Progress</th>
+                        <th>Update</th>
                         <th>×</th>
                     </tr>
                 </thead>
@@ -55,7 +71,7 @@
                         <td>購入済み</td>
                         <td>45%</td>
                         <td>2020/02/14 15:00</td>
-                        <td><a>🗑削除</a></td>
+                        <td><a>🗑Del</a></td>
                     </tr>
                     <tr>
                         <th scope="row">2</th>
@@ -64,7 +80,7 @@
                         <td>購入済み</td>
                         <td>45%</td>
                         <td>2020/02/14 15:00</td>
-                        <td><a>🗑削除</a></td>
+                        <td><a>🗑Del</a></td>
                     </tr>
                 </tbody>
             </table>
