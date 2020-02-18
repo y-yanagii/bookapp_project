@@ -31,7 +31,7 @@
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
-                        <div class="modal-header">
+                        <div class="modal-header bg-success">
                             <h5 class="modal-title" id="exampleModalLabel">New user registration</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -41,11 +41,11 @@
                             <form>
                             <div class="form-group">
                                 <label for="name" class="col-form-label">UserName:</label>
-                                <input type="text" class="form-control" id="name">
+                                <input type="text" class="form-control" id="name" placeholder="UserName">
                             </div>
                             <div class="form-group">
                                 <label for="password" class="col-form-label">PassWord:</label>
-                                <input type="password" class="form-control" id="password">
+                                <input type="password" class="form-control" id="password" placeholder="PassWord">
                             </div>
                             </form>
                         </div>
@@ -69,19 +69,6 @@
                 </div>
             </form>
         </div>
-        <script src="{{ asset('js/app.js') }}">
-
-            // Newボタン押下時のモーダル表示処理
-            $('#exampleModal').on('show.bs.modal', function (event) {
-                var button = $(event.relatedTarget) // Button that triggered the modal
-                var recipient = button.data('whatever') // Extract info from data-* attributes
-                // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-                // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-                var modal = $(this)
-                // ログイン画面からログイン名などを取得してくる処理をコメントアウト
-                // modal.find('.modal-title').text('New message to ' + recipient)
-                // modal.find('.modal-body input').val(recipient)
-            });
-        </script>
+        <script src="{{ asset('js/login.js') }}"></script>
     </body>
 </html>

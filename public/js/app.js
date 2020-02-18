@@ -37054,6 +37054,8 @@ module.exports = function(module) {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+__webpack_require__(/*! ./login */ "./resources/js/login.js");
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -37098,6 +37100,25 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/login.js":
+/*!*******************************!*\
+  !*** ./resources/js/login.js ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// Newボタン押下時イベント
+$('#exampleModal').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget); // Button that triggered the modal
+
+  var recipient = button.data('whatever');
+  var modal = $(this); // ログイン画面からログイン名などを取得してくる処理をコメントアウト
+  // ログイン名、パスワードをclear
+  $(modal.find('.modal-body input')).val("");
+});
 
 /***/ }),
 
