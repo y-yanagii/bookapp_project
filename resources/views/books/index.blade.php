@@ -38,7 +38,7 @@
                         <input type="radio" name="options" id="option2" autocomplete="off"> 購入前
                     </label>
                     <label class="btn btn-info">
-                        <input type="radio" name="options" id="option3" autocomplete="off"> 購入後
+                        <input type="radio" name="options" id="option3" autocomplete="off"> 購入済
                     </label>
                 </div>
 
@@ -64,7 +64,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr class="bookRow">
                         <th scope="row">1</th>
                         <td>Laravel入門</td>
                         <td>柳澤　良幸</td>
@@ -73,12 +73,21 @@
                         <td>2020/02/14 15:00</td>
                         <td><a>🗑Del</a></td>
                     </tr>
-                    <tr>
+                    <tr class="bookRow">
                         <th scope="row">2</th>
-                        <td>Laravel入門</td>
+                        <td>Laravel中級</td>
                         <td>柳澤　良幸</td>
                         <td>購入済み</td>
-                        <td>45%</td>
+                        <td>30%</td>
+                        <td>2020/02/14 15:00</td>
+                        <td><a>🗑Del</a></td>
+                    </tr>
+                    <tr class="bookRow">
+                        <th scope="row">3</th>
+                        <td>Laravel上級</td>
+                        <td>柳澤　良幸</td>
+                        <td>購入済み</td>
+                        <td>55%</td>
                         <td>2020/02/14 15:00</td>
                         <td><a>🗑Del</a></td>
                     </tr>
@@ -102,6 +111,9 @@
         <div class="container bg-dark">
 
         </div>
-        <script src="{{ asset('js/app.js') }}"></script>
+
+        <!-- ↓↓↓本詳細情報モーダル領域↓↓↓ -->
+        <!-- ↑↑↑本詳細情報モーダル領域↑↑↑ -->
+        <script src="{{ asset('js/books.js') }}"></script>
     </body>
 </html>

@@ -37056,6 +37056,22 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! ./login */ "./resources/js/login.js");
 
+__webpack_require__(/*! ./books */ "./resources/js/books.js");
+
+/***/ }),
+
+/***/ "./resources/js/books.js":
+/*!*******************************!*\
+  !*** ./resources/js/books.js ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// 本一覧liタグ押下時のモーダル表示
+$('.bookRow').on('click', function (event) {
+  alert($(this).find("th").text());
+});
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -37114,9 +37130,10 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 $('#exampleModal').on('show.bs.modal', function (event) {
   var button = $(event.relatedTarget); // Button that triggered the modal
 
-  var recipient = button.data('whatever');
-  var modal = $(this); // ログイン画面からログイン名などを取得してくる処理をコメントアウト
-  // ログイン名、パスワードをclear
+  var recipient = button.data('whatever'); // モーダルのdivタグを変数へ代入
+
+  var modal = $(this); // ログイン名、パスワードをclear
+
   $(modal.find('.modal-body input')).val("");
 });
 
