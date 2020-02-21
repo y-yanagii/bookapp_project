@@ -16,3 +16,4 @@
 // });
 Route::get('/', 'LoginController@index');
 Route::get('/books', 'BooksController@index');
+Route::get('/chats', 'ChatsController@index');
