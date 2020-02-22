@@ -108,10 +108,10 @@
             </nav>
         </div>
         <!-- Fotter領域 -->
-        <div class="container bg-dark">
+        <div class="container bg-dark mt-4">
             <nav class="nav">
                 <a class="nav-link text-light active" href="{{ url('/books') }}">本管理一覧</a>
-                <a class="nav-link text-light" href="{{ url('/chats') }}}">チャット</a>
+                <a class="nav-link text-light" href="{{ url('/chats') }}">チャット</a>
                 <a class="nav-link text-light" href="#">エクスポート</a>
             </nav>
         </div>
