@@ -78,7 +78,10 @@
                     transform: rotate(-35deg);
                 }
             
-            
+            /* エクスポートのフッタ */
+            .exportAnchorlink {
+                cursor: pointer;
+            }
         </style>
     </head>
     <body>
@@ -168,10 +171,76 @@
             <nav class="nav">
                 <a class="nav-link text-light" href="{{ url('/books') }}">本管理一覧</a>
                 <a class="nav-link text-light active" href="{{ url('/chats') }}">チャット</a>
-                <a class="nav-link text-light" href="#">エクスポート</a>
+                <a class="nav-link text-light exportAnchorlink" data-toggle="modal" data-target=".exportModal-lg">エクスポート</a>
             </nav>
         </div>
 
+        <!-- ↓↓↓エクスポートモーダル領域↓↓↓ -->
+        <div class="modal fade exportModal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header bg-dark">
+                        <h5 class="modal-title text-white" id="exampleModalLabel">Jsonエクスポート</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="text-white">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                        <table class="table table-hover">
+                            <thead class="bg-primary">
+                                <tr>
+                                <th class="text-white" scope="col">#</th>
+                                <th class="text-white" scope="col">タイトル</th>
+                                <th class="text-white" scope="col">値段</th>
+                                <th class="text-white" scope="col">アマゾンURl</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                <th scope="row">1</th>
+                                <td>Laravel入門</td>
+                                <td>3690円</td>
+                                <td></td>
+                                </tr>
+                                <tr>
+                                <th scope="row">2</th>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                                <td>@fat</td>
+                                </tr>
+                                <tr>
+                                <th scope="row">3</th>
+                                <td colspan="2">Larry the Bird</td>
+                                <td>@twitter</td>
+                                </tr>
+                                <tr>
+                                <th scope="row">3</th>
+                                <td colspan="2">Larry the Bird</td>
+                                <td>@twitter</td>
+                                </tr>
+                                <tr>
+                                <th scope="row">3</th>
+                                <td colspan="2">Larry the Bird</td>
+                                <td>@twitter</td>
+                                </tr>
+                                <tr>
+                                <th scope="row">3</th>
+                                <td colspan="2">Larry the Bird</td>
+                                <td>@twitter</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
+                        <button type="button" class="btn btn-primary">エクスポート</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ↑↑↑エクスポートモーダル領域↑↑↑ -->
         <!-- ↓↓↓ログアウトモーダル領域↓↓↓ -->
         <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
