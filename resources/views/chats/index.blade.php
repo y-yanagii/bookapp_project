@@ -91,7 +91,7 @@
                 </div>
                 <!-- 新規登録、ログアウトボタン領域 -->
                 <div class="col-lg-6">
-                    <button class="btn btn-dark m-2 float-right" href="{{ url('LoginController@logout') }}">ログアウト</button>
+                    <button class="btn btn-dark m-2 float-right" data-toggle="modal" data-target="#logoutModal">ログアウト</button>
                 </div>
             </div>
         </div>
@@ -171,6 +171,30 @@
                 <a class="nav-link text-light" href="#">エクスポート</a>
             </nav>
         </div>
+
+        <!-- ↓↓↓ログアウトモーダル領域↓↓↓ -->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="logoutModalLabel">ログアウト</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ログアウトします。よろしいですか？
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
+                    <form action="{{ url('/logout') }}" method="get">
+                        <button type="submit" class="btn btn-primary">OK</button>
+                    </form>
+                </div>
+                </div>
+            </div>
+        </div>
+        <!-- ↑↑↑ログアウトモーダル領域↑↑↑ -->
         <script src="{{ asset('js/books.js') }}"></script>
     </body>
 </html>
