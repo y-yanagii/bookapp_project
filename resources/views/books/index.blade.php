@@ -20,6 +20,11 @@
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <style>
+            /* 本情報のrow */
+            .bookRow {
+                cursor: pointer;
+            }
+
             /* エクスポートのフッタ */
             .exportAnchorlink {
                 cursor: pointer;
@@ -36,7 +41,7 @@
             <div class="row">
                 <!-- タイトル領域 -->
                 <div class="col-lg-2">
-                    <h2 class="text-success m-2">Bookshelf</h2>
+                    <h2 class="text-success m-2">本棚</h2>
                 </div>
 
                 <!-- 絞り込みラジオボタン領域 -->
@@ -65,11 +70,11 @@
                 <thead>
                     <tr class="bg-info">
                         <th>#</th>
-                        <th>Title</th>
-                        <th>Registered person</th>
-                        <th>Purchase type</th>
-                        <th>Progress</th>
-                        <th>Update</th>
+                        <th>タイトル</th>
+                        <th>登録者</th>
+                        <th>購入区分</th>
+                        <th>進捗率</th>
+                        <th>更新日時</th>
                         <th>×</th>
                     </tr>
                 </thead>
@@ -131,7 +136,7 @@
 
         <!-- ↓↓↓エクスポートモーダル領域↓↓↓ -->
         <div class="modal fade exportModal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
                 <div class="modal-content">
                     <div class="modal-header bg-dark">
                         <h5 class="modal-title text-white" id="exampleModalLabel">Jsonエクスポート</h5>

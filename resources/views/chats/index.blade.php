@@ -23,21 +23,27 @@
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <style>
+            /* メッセージ入力テキストエリア */
+            .messeageArea {
+                max-height: 30px;
+            }
+
             /* 左サイドメッセージ */
             .chatting {
                 width: 100%;
+                margin: 10px 0;
                 text-align: left;
             }
-                .says {
+                .chatting p {
                     display: inline-block;
                     position: relative; 
                     margin: 5px 0 0 5px;
-                    padding: 10px;
+                    padding: 8px;
                     max-width: 250px;
                     border-radius: 12px;
                     background: #edf1ee;
                 }
-                    .says:after {
+                    .chatting p:after {
                         content: "";
                         display: inline-block;
                         position: absolute;
@@ -48,10 +54,7 @@
                         -webkit-transform: rotate(35deg);
                         transform: rotate(35deg);
                     }
-                        .says p {
-                            margin: 0;
-                            padding: 0;
-                        }
+
             /* 右サイドメッセージ */
             .mycomment {
               margin: 10px 0;
@@ -132,38 +135,23 @@
                         <li class="list-group-item"><i class="fas fa-user-astronaut"></i>User-M</li>
                         <li class="list-group-item"><i class="fas fa-user-astronaut"></i>User-N</li>
                         <li class="list-group-item"><i class="fas fa-user-astronaut"></i>User-O</li>
-                        <li class="list-group-item"><i class="fas fa-user-astronaut"></i>User-P</li>
-                        <li class="list-group-item"><i class="fas fa-user-astronaut"></i>User-Q</li>
-                        <li class="list-group-item"><i class="fas fa-user-astronaut"></i>User-R</li>
-                        <li class="list-group-item"><i class="fas fa-user-astronaut"></i>User-S</li>
-                        <li class="list-group-item"><i class="fas fa-user-astronaut"></i>User-T</li>
-                        <li class="list-group-item"><i class="fas fa-user-astronaut"></i>User-U</li>
-                        <li class="list-group-item"><i class="fas fa-user-astronaut"></i>User-V</li>
-                        <li class="list-group-item"><i class="fas fa-user-astronaut"></i>User-W</li>
-                        <li class="list-group-item"><i class="fas fa-user-astronaut"></i>User-X</li>
-                        <li class="list-group-item"><i class="fas fa-user-astronaut"></i>User-Y</li>
-                        <li class="list-group-item"><i class="fas fa-user-astronaut"></i>User-Z</li>
                     </ul>
                 </div>
                 <div class="col-9 bg-secondary">    
                     <!-- タイムラインメッセージ部分 -->
-                    <div id="bms_messages" style="height: 93%;">
+                    <div id="bms_messages" style="height: 91%;">
                         <!--メッセージ（左側）-->
                         <div class="chatting">
-                            <div class="says">
-                                <p>左ふきだし文</p>
-                            </div>
+                            <p>これはメッセージテストです！！！</p>
                         </div>
                         <!--メッセージ（右側）-->
                         <div class="mycomment">
-                            <p>
-                            右ふきだし文
-                            </p>
+                            <p>これはメッセージテストです！！！</p>
                         </div>
                     </div>
 
                     <div style="display: flex;">
-                        <textarea name="message" id="message" class="col-11 mr-2" placeholder="メッセージを入力してください" style="height: 30px;"></textarea>
+                        <textarea name="message" id="message" class="messeageArea col-11 mr-2" placeholder="メッセージを入力してください" style="height: 30px;"></textarea>
                         <button class="btn btn-primary col-1" style="height:30px; padding-top: 4px;">送信</button>
                     </div>
                 </div>
@@ -180,7 +168,7 @@
 
         <!-- ↓↓↓エクスポートモーダル領域↓↓↓ -->
         <div class="modal fade exportModal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
                 <div class="modal-content">
                     <div class="modal-header bg-dark">
                         <h5 class="modal-title text-white" id="exampleModalLabel">Jsonエクスポート</h5>
