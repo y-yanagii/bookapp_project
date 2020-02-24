@@ -24,6 +24,10 @@
             .exportAnchorlink {
                 cursor: pointer;
             }
+            /* エクスポート選択色 */
+            .activeExport {
+                background-color: #38c172 !important;
+            }
         </style>
     </head>
     <body>
@@ -147,37 +151,37 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                <th scope="row">1</th>
-                                <td>Laravel入門</td>
-                                <td>3690円</td>
-                                <td></td>
+                                <tr class="exportBook-tr">
+                                    <th scope="row">1</th>
+                                    <td>Laravel入門</td>
+                                    <td>3690円</td>
+                                    <td></td>
                                 </tr>
-                                <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
+                                <tr class="exportBook-tr">
+                                    <th scope="row">2</th>
+                                    <td>Jacob</td>
+                                    <td>Thornton</td>
+                                    <td>@fat</td>
                                 </tr>
-                                <tr>
-                                <th scope="row">3</th>
-                                <td colspan="2">Larry the Bird</td>
-                                <td>@twitter</td>
+                                <tr class="exportBook-tr">
+                                    <th scope="row">3</th>
+                                    <td colspan="2">Larry the Bird</td>
+                                    <td>@twitter</td>
                                 </tr>
-                                <tr>
-                                <th scope="row">3</th>
-                                <td colspan="2">Larry the Bird</td>
-                                <td>@twitter</td>
+                                <tr class="exportBook-tr">
+                                    <th scope="row">3</th>
+                                    <td colspan="2">Larry the Bird</td>
+                                    <td>@twitter</td>
                                 </tr>
-                                <tr>
-                                <th scope="row">3</th>
-                                <td colspan="2">Larry the Bird</td>
-                                <td>@twitter</td>
+                                <tr class="exportBook-tr">
+                                    <th scope="row">3</th>
+                                    <td colspan="2">Larry the Bird</td>
+                                    <td>@twitter</td>
                                 </tr>
-                                <tr>
-                                <th scope="row">3</th>
-                                <td colspan="2">Larry the Bird</td>
-                                <td>@twitter</td>
+                                <tr class="exportBook-tr">
+                                    <th scope="row">3</th>
+                                    <td colspan="2">Larry the Bird</td>
+                                    <td>@twitter</td>
                                 </tr>
                             </tbody>
                         </table>
