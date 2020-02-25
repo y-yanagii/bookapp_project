@@ -33,6 +33,20 @@
             .activeExport {
                 background-color: #38c172 !important;
             }
+
+            /* 本詳細情報のimgDiv */
+            .bookImgDiv {
+                text-align: center;
+            }
+            /* 本詳細情報の現ページ／総ページのDiv */
+            .current-total-pageDiv {
+                display: flex;
+            } 
+            /* 現ページ／総ページのスラッシュ */
+            .slashPageSpan {
+                padding-top: 7px;
+            }
+
         </style>
     </head>
     <body>
@@ -79,7 +93,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="bookRow">
+                    <tr class="bookRow" data-toggle="modal" data-target=".book-info-modal-lg">
                         <th scope="row">1</th>
                         <td>Laravel入門</td>
                         <td>柳澤　良幸</td>
@@ -88,7 +102,7 @@
                         <td>2020/02/14 15:00</td>
                         <td><a>🗑Del</a></td>
                     </tr>
-                    <tr class="bookRow">
+                    <tr class="bookRow" data-toggle="modal" data-target=".book-info-modal-lg">
                         <th scope="row">2</th>
                         <td>Laravel中級</td>
                         <td>柳澤　良幸</td>
@@ -97,7 +111,7 @@
                         <td>2020/02/14 15:00</td>
                         <td><a>🗑Del</a></td>
                     </tr>
-                    <tr class="bookRow">
+                    <tr class="bookRow" data-toggle="modal" data-target=".book-info-modal-lg">
                         <th scope="row">3</th>
                         <td>Laravel上級</td>
                         <td>柳澤　良幸</td>
@@ -131,8 +145,86 @@
             </nav>
         </div>
 
-        <!-- ↓↓↓本詳細情報モーダル領域↓↓↓ -->
-        <!-- ↑↑↑本詳細情報モーダル領域↑↑↑ -->
+        <!-- ↓↓↓本詳細情報、本登録モーダル領域↓↓↓ -->
+        <div class="modal fade book-info-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header bg-success">
+                        <h5 class="modal-title text-white">詳細情報編集</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="bookImgDiv mb-2">
+                            <img class="img-thumbnail" src="https://picsum.photos/200/300" alt="Thumbnail image">
+                        </div>
+                        <form>
+                            <div class="form-row mb-1">
+                                <div class="col">
+                                    <label for="uploadFile">本画像</label>
+                                    <input id="uploadFile" type="file" class="form-control-file">
+                                </div>
+                                <div class="col">
+                                    <label for="price">値段</label>
+                                    <input id="price" type="text" class="form-control" placeholder="本の値段を入力してください">
+                                </div>
+                            </div>
+                            <div class="form-row mb-1">
+                                <div class="col">
+                                    <label for="book_name">タイトル</label>
+                                    <input id="book_name" type="text" class="form-control" placeholder="本の題名を入力してください">
+                                </div>
+                            </div>
+                            <div class="form-row mb-1">
+                                <div class="col">
+                                    <label for="total_page">現P／総P</label>
+                                    <div class="current-total-pageDiv">
+                                        <input id="current_page" type="text" class="form-control" placeholder="OOO">
+                                        <span class="slashPageSpan">／</span>
+                                        <input id="total_page" type="text" class="form-control" placeholder="OOO">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <label for="purchase_type">購入区分</label>
+                                    <div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="purchase_type" id="purchase_type0" value="before_purchase">
+                                            <label class="form-check-label" for="purchase_type0">購入前</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="purchase_type" id="purchase_type1" value="purchased">
+                                            <label class="form-check-label" for="purchase_type1">購入済</label>
+                                        </div>
+                                    </div>
+                                </div>  
+                            </div>
+                            <div class="form-row mb-1">                               
+                                <div class="col">
+                                    <label for="name">登録者</label>
+                                    <input type="text" id="name" class="form-control" placeholder="OO OO" disabled>
+                                </div>
+                                <div class="col">
+                                    <label for="updated_at">最終更新日</label>
+                                    <input type="text" id="updated_at" class="form-control" placeholder="2020/03/15" disabled>
+                                </div>
+                            </div>
+                            <div class="form-row mb-1">
+                                <div class="col">
+                                    <label for="amazon_url">アマゾンURL</label>
+                                    <input type="text" id="amazon_url" class="form-control" placeholder="https://goole.com" disabled>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
+                        <button type="button" class="btn btn-primary">更新</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ↑↑↑本詳細情報、本登録モーダル領域↑↑↑ -->
 
         <!-- ↓↓↓エクスポートモーダル領域↓↓↓ -->
         <div class="modal fade exportModal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
