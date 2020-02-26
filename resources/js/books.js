@@ -11,3 +11,13 @@ $('.exportBook-tr').on('click', function() {
     $(this).addClass("activeExport");
   }
 });
+
+// ユーザ一覧押下時選択切替
+$('.loginInfoLi').on('click', function() {
+  if(!$(this).hasClass("active")) {
+    $('.loginInfoLi').removeClass("active");
+    $(this).addClass("active");
+    var $userName = $(this).text();
+    $('.user-to').text('● ' + $userName);
+  }
+});

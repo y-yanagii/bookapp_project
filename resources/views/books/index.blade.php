@@ -1,61 +1,12 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.default')
 
-        <!-- CSRF Token -->
-        <meta name="csrf-token" content="{{ csrf_token() }}">
-
-        <title>{{ config('app.name', 'Laravel') }}</title>
-
-        <!-- Scripts -->
-        <script src="{{ asset('js/app.js') }}" defer></script>
-
-        <!-- Fonts -->
-        <link rel="dns-prefetch" href="//fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-        <!-- Styles -->
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-        <style>
-            /* 本情報のrow */
-            .bookRow {
-                cursor: pointer;
-            }
-
-            /* エクスポートのフッタ */
-            .exportAnchorlink {
-                cursor: pointer;
-            }
-            /* エクスポート選択色 */
-            .activeExport {
-                background-color: #38c172 !important;
-            }
-
-            /* 本詳細情報のimgDiv */
-            .bookImgDiv {
-                text-align: center;
-            }
-            /* 本詳細情報の現ページ／総ページのDiv */
-            .current-total-pageDiv {
-                display: flex;
-            } 
-            /* 現ページ／総ページのスラッシュ */
-            .slashPageSpan {
-                padding-top: 7px;
-            }
-
-        </style>
-    </head>
-    <body>
+@section('content')
         <!-- Hedder領域 -->
         <div class="container">
             <div class="row">
                 <!-- タイトル領域 -->
                 <div class="col-lg-2">
-                    <h2 class="text-success m-2">本棚</h2>
+                    <h2 class="text-primary m-2">本棚</h2>
                 </div>
 
                 <!-- 絞り込みラジオボタン領域 -->
@@ -74,7 +25,7 @@
                 <!-- 新規登録、ログアウトボタン領域 -->
                 <div class="col-lg-7">
                     <button class="btn btn-dark m-2 float-right" data-toggle="modal" data-target="#logoutModal">ログアウト</button>
-                    <button class="btn btn-success m-2 float-right" href="{{ url('BooksController@new') }}">本登録</button>
+                    <button class="btn btn-success m-2 float-right" href="{{ url('BooksController@new') }}" data-toggle="modal" data-target=".book-info-modal-lg">本登録</button>
                 </div>
             </div>
         </div>
@@ -136,21 +87,13 @@
                 </ul>
             </nav>
         </div>
-        <!-- Fotter領域 -->
-        <div class="container bg-dark mt-4">
-            <nav class="nav">
-                <a class="nav-link text-light active" href="{{ url('/books') }}">本管理一覧</a>
-                <a class="nav-link text-light" href="{{ url('/chats') }}">チャット</a>
-                <a class="nav-link text-light exportAnchorlink" data-toggle="modal" data-target=".exportModal-lg">エクスポート</a>
-            </nav>
-        </div>
 
         <!-- ↓↓↓本詳細情報、本登録モーダル領域↓↓↓ -->
         <div class="modal fade book-info-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
-                    <div class="modal-header bg-success">
-                        <h5 class="modal-title text-white">詳細情報編集</h5>
+                    <div class="modal-header">
+                        <h5 class="modal-title">詳細情報編集</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                         </button>
@@ -225,97 +168,4 @@
             </div>
         </div>
         <!-- ↑↑↑本詳細情報、本登録モーダル領域↑↑↑ -->
-
-        <!-- ↓↓↓エクスポートモーダル領域↓↓↓ -->
-        <div class="modal fade exportModal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
-                <div class="modal-content">
-                    <div class="modal-header bg-dark">
-                        <h5 class="modal-title text-white" id="exampleModalLabel">Jsonエクスポート</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true" class="text-white">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                        <table class="table table-hover">
-                            <thead class="bg-primary">
-                                <tr>
-                                <th class="text-white" scope="col">#</th>
-                                <th class="text-white" scope="col">タイトル</th>
-                                <th class="text-white" scope="col">値段</th>
-                                <th class="text-white" scope="col">アマゾンURl</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="exportBook-tr">
-                                    <th scope="row">1</th>
-                                    <td>Laravel入門</td>
-                                    <td>3690円</td>
-                                    <td></td>
-                                </tr>
-                                <tr class="exportBook-tr">
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                </tr>
-                                <tr class="exportBook-tr">
-                                    <th scope="row">3</th>
-                                    <td colspan="2">Larry the Bird</td>
-                                    <td>@twitter</td>
-                                </tr>
-                                <tr class="exportBook-tr">
-                                    <th scope="row">3</th>
-                                    <td colspan="2">Larry the Bird</td>
-                                    <td>@twitter</td>
-                                </tr>
-                                <tr class="exportBook-tr">
-                                    <th scope="row">3</th>
-                                    <td colspan="2">Larry the Bird</td>
-                                    <td>@twitter</td>
-                                </tr>
-                                <tr class="exportBook-tr">
-                                    <th scope="row">3</th>
-                                    <td colspan="2">Larry the Bird</td>
-                                    <td>@twitter</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
-                        <button type="button" class="btn btn-primary">エクスポート</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- ↑↑↑エクスポートモーダル領域↑↑↑ -->
-
-        <!-- ↓↓↓ログアウトモーダル領域↓↓↓ -->
-        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="logoutModalLabel">ログアウト</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    ログアウトします。よろしいですか？
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
-                    <form action="{{ url('/logout') }}" method="get">
-                        <button type="submit" class="btn btn-primary">OK</button>
-                    </form>
-                </div>
-                </div>
-            </div>
-        </div>
-        <!-- ↑↑↑ログアウトモーダル領域↑↑↑ -->
-        <script src="{{ asset('js/books.js') }}"></script>
-    </body>
-</html>
+@endsection
