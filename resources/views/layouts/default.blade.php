@@ -34,6 +34,17 @@
                 cursor: pointer;
             }
 
+            /* 本情報リストを囲う親DIV */
+            .booksInfoListDiv {
+                height: 700px;
+                overflow-y: scroll;
+            }
+
+            /* 本情報リストのtd */
+            .booksInfoListTable td {
+                vertical-align: middle !important;
+            }
+
             /* エクスポートのフッタ */
             .exportAnchorlink {
                 cursor: pointer;
@@ -128,6 +139,12 @@
                     transform: rotate(-35deg);
                 }
             
+            /* エクスポートテーブルの親DIV */
+            .exportModalTablesDiv {
+                height: 500px;
+                overflow-y: scroll;
+            }
+
             /* エクスポートのフッタ */
             .exportAnchorlink {
                 cursor: pointer;
@@ -164,7 +181,7 @@
                         <span aria-hidden="true" class="text-white">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body exportModalTablesDiv">
                         <form>
                         <table class="table table-hover">
                             <thead class="bg-primary">

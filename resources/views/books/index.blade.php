@@ -30,8 +30,8 @@
             </div>
         </div>
         <!-- メニューリスト領域一覧領域 -->
-        <div class="container" style="height: 700px;">
-            <table class="table table-hover">
+        <div class="container booksInfoListDiv">
+            <table class="table table-hover booksInfoListTable">
                 <thead>
                     <tr class="bg-info">
                         <th>#</th>
@@ -45,7 +45,7 @@
                 </thead>
                 <tbody>
                     <tr class="bookRow" data-toggle="modal" data-target=".book-info-modal-lg">
-                        <th scope="row">1</th>
+                        <th scope="row"><img class="img-thumbnail" src="https://picsum.photos/50/60" alt="Thumbnail image"></th>
                         <td>Laravel入門</td>
                         <td>柳澤　良幸</td>
                         <td>購入済み</td>
@@ -54,7 +54,7 @@
                         <td><a>🗑Del</a></td>
                     </tr>
                     <tr class="bookRow" data-toggle="modal" data-target=".book-info-modal-lg">
-                        <th scope="row">2</th>
+                        <th scope="row"><img class="img-thumbnail" src="https://picsum.photos/50/60" alt="Thumbnail image"></th>
                         <td>Laravel中級</td>
                         <td>柳澤　良幸</td>
                         <td>購入済み</td>
@@ -63,7 +63,52 @@
                         <td><a>🗑Del</a></td>
                     </tr>
                     <tr class="bookRow" data-toggle="modal" data-target=".book-info-modal-lg">
-                        <th scope="row">3</th>
+                        <th scope="row"><img class="img-thumbnail" src="https://picsum.photos/50/60" alt="Thumbnail image"></th>
+                        <td>Laravel上級</td>
+                        <td>柳澤　良幸</td>
+                        <td>購入済み</td>
+                        <td>55%</td>
+                        <td>2020/02/14 15:00</td>
+                        <td><a>🗑Del</a></td>
+                    </tr>
+                    <tr class="bookRow" data-toggle="modal" data-target=".book-info-modal-lg">
+                        <th scope="row"><img class="img-thumbnail" src="https://picsum.photos/50/60" alt="Thumbnail image"></th>
+                        <td>Laravel上級</td>
+                        <td>柳澤　良幸</td>
+                        <td>購入済み</td>
+                        <td>55%</td>
+                        <td>2020/02/14 15:00</td>
+                        <td><a>🗑Del</a></td>
+                    </tr>
+                    <tr class="bookRow" data-toggle="modal" data-target=".book-info-modal-lg">
+                        <th scope="row"><img class="img-thumbnail" src="https://picsum.photos/50/60" alt="Thumbnail image"></th>
+                        <td>Laravel上級</td>
+                        <td>柳澤　良幸</td>
+                        <td>購入済み</td>
+                        <td>55%</td>
+                        <td>2020/02/14 15:00</td>
+                        <td><a>🗑Del</a></td>
+                    </tr>
+                    <tr class="bookRow" data-toggle="modal" data-target=".book-info-modal-lg">
+                        <th scope="row"><img class="img-thumbnail" src="https://picsum.photos/50/60" alt="Thumbnail image"></th>
+                        <td>Laravel上級</td>
+                        <td>柳澤　良幸</td>
+                        <td>購入済み</td>
+                        <td>55%</td>
+                        <td>2020/02/14 15:00</td>
+                        <td><a>🗑Del</a></td>
+                    </tr>
+                    <tr class="bookRow" data-toggle="modal" data-target=".book-info-modal-lg">
+                        <th scope="row"><img class="img-thumbnail" src="https://picsum.photos/50/60" alt="Thumbnail image"></th>
+                        <td>Laravel上級</td>
+                        <td>柳澤　良幸</td>
+                        <td>購入済み</td>
+                        <td>55%</td>
+                        <td>2020/02/14 15:00</td>
+                        <td><a>🗑Del</a></td>
+                    </tr>
+                    <tr class="bookRow" data-toggle="modal" data-target=".book-info-modal-lg">
+                        <th scope="row"><img class="img-thumbnail" src="https://picsum.photos/50/60" alt="Thumbnail image"></th>
                         <td>Laravel上級</td>
                         <td>柳澤　良幸</td>
                         <td>購入済み</td>
@@ -73,6 +118,8 @@
                     </tr>
                 </tbody>
             </table>
+        </div>
+        <div class="container mt-1">
             <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-end">
                     <li class="page-item disabled">
@@ -105,23 +152,23 @@
                         <form>
                             <div class="form-row mb-1">
                                 <div class="col">
-                                    <label for="uploadFile">本画像</label>
+                                    <label for="uploadFile">本画像：</label>
                                     <input id="uploadFile" type="file" class="form-control-file">
                                 </div>
                                 <div class="col">
-                                    <label for="price">値段</label>
+                                    <label for="price">値段：</label>
                                     <input id="price" type="text" class="form-control" placeholder="本の値段を入力してください">
                                 </div>
                             </div>
                             <div class="form-row mb-1">
                                 <div class="col">
-                                    <label for="book_name">タイトル</label>
+                                    <label for="book_name">タイトル：</label>
                                     <input id="book_name" type="text" class="form-control" placeholder="本の題名を入力してください">
                                 </div>
                             </div>
                             <div class="form-row mb-1">
                                 <div class="col">
-                                    <label for="total_page">現P／総P</label>
+                                    <label for="total_page">現P／総P：</label>
                                     <div class="current-total-pageDiv">
                                         <input id="current_page" type="text" class="form-control" placeholder="OOO">
                                         <span class="slashPageSpan">／</span>
@@ -129,7 +176,7 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <label for="purchase_type">購入区分</label>
+                                    <label for="purchase_type">購入区分：</label>
                                     <div>
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="purchase_type" id="purchase_type0" value="before_purchase">
@@ -144,17 +191,17 @@
                             </div>
                             <div class="form-row mb-1">                               
                                 <div class="col">
-                                    <label for="name">登録者</label>
+                                    <label for="name">登録者：</label>
                                     <input type="text" id="name" class="form-control" placeholder="OO OO" disabled>
                                 </div>
                                 <div class="col">
-                                    <label for="updated_at">最終更新日</label>
+                                    <label for="updated_at">最終更新日：</label>
                                     <input type="text" id="updated_at" class="form-control" placeholder="2020/03/15" disabled>
                                 </div>
                             </div>
                             <div class="form-row mb-1">
                                 <div class="col">
-                                    <label for="amazon_url">アマゾンURL</label>
+                                    <label for="amazon_url">アマゾンURL：</label>
                                     <input type="text" id="amazon_url" class="form-control" placeholder="https://goole.com" disabled>
                                 </div>
                             </div>
