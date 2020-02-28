@@ -25,7 +25,7 @@
                 <!-- 新規登録、ログアウトボタン領域 -->
                 <div class="col-lg-7">
                     <button class="btn btn-dark m-2 float-right" data-toggle="modal" data-target="#logoutModal">ログアウト</button>
-                    <button class="btn btn-success m-2 float-right" href="{{ url('BooksController@new') }}" data-toggle="modal" data-target=".book-info-modal-lg">本登録</button>
+                    <button class="btn btn-success m-2 float-right newBookbtn" href="{{ url('BooksController@new') }}" data-toggle="modal" data-target=".book-info-modal-lg">本登録</button>
                 </div>
             </div>
         </div>
@@ -51,7 +51,7 @@
                         <td>購入済み</td>
                         <td>45%</td>
                         <td>2020/02/14 15:00</td>
-                        <td><a>🗑Del</a></td>
+                        <td class="deleteBook"><a>🗑Del</a></td>
                     </tr>
                     <tr class="bookRow" data-toggle="modal" data-target=".book-info-modal-lg">
                         <th scope="row"><img class="img-thumbnail" src="https://picsum.photos/50/60" alt="Thumbnail image"></th>
@@ -60,7 +60,7 @@
                         <td>購入済み</td>
                         <td>30%</td>
                         <td>2020/02/14 15:00</td>
-                        <td><a>🗑Del</a></td>
+                        <td class="deleteBook"><a>🗑Del</a></td>
                     </tr>
                     <tr class="bookRow" data-toggle="modal" data-target=".book-info-modal-lg">
                         <th scope="row"><img class="img-thumbnail" src="https://picsum.photos/50/60" alt="Thumbnail image"></th>
@@ -69,7 +69,7 @@
                         <td>購入済み</td>
                         <td>55%</td>
                         <td>2020/02/14 15:00</td>
-                        <td><a>🗑Del</a></td>
+                        <td class="deleteBook"><a>🗑Del</a></td>
                     </tr>
                     <tr class="bookRow" data-toggle="modal" data-target=".book-info-modal-lg">
                         <th scope="row"><img class="img-thumbnail" src="https://picsum.photos/50/60" alt="Thumbnail image"></th>
@@ -78,7 +78,7 @@
                         <td>購入済み</td>
                         <td>55%</td>
                         <td>2020/02/14 15:00</td>
-                        <td><a>🗑Del</a></td>
+                        <td class="deleteBook"><a>🗑Del</a></td>
                     </tr>
                     <tr class="bookRow" data-toggle="modal" data-target=".book-info-modal-lg">
                         <th scope="row"><img class="img-thumbnail" src="https://picsum.photos/50/60" alt="Thumbnail image"></th>
@@ -87,7 +87,7 @@
                         <td>購入済み</td>
                         <td>55%</td>
                         <td>2020/02/14 15:00</td>
-                        <td><a>🗑Del</a></td>
+                        <td class="deleteBook"><a>🗑Del</a></td>
                     </tr>
                     <tr class="bookRow" data-toggle="modal" data-target=".book-info-modal-lg">
                         <th scope="row"><img class="img-thumbnail" src="https://picsum.photos/50/60" alt="Thumbnail image"></th>
@@ -96,7 +96,7 @@
                         <td>購入済み</td>
                         <td>55%</td>
                         <td>2020/02/14 15:00</td>
-                        <td><a>🗑Del</a></td>
+                        <td class="deleteBook"><a>🗑Del</a></td>
                     </tr>
                     <tr class="bookRow" data-toggle="modal" data-target=".book-info-modal-lg">
                         <th scope="row"><img class="img-thumbnail" src="https://picsum.photos/50/60" alt="Thumbnail image"></th>
@@ -105,7 +105,7 @@
                         <td>購入済み</td>
                         <td>55%</td>
                         <td>2020/02/14 15:00</td>
-                        <td><a>🗑Del</a></td>
+                        <td class="deleteBook"><a>🗑Del</a></td>
                     </tr>
                     <tr class="bookRow" data-toggle="modal" data-target=".book-info-modal-lg">
                         <th scope="row"><img class="img-thumbnail" src="https://picsum.photos/50/60" alt="Thumbnail image"></th>
@@ -114,7 +114,7 @@
                         <td>購入済み</td>
                         <td>55%</td>
                         <td>2020/02/14 15:00</td>
-                        <td><a>🗑Del</a></td>
+                        <td class="deleteBook"><a>🗑Del</a></td>
                     </tr>
                 </tbody>
             </table>
@@ -140,7 +140,7 @@
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">詳細情報編集</h5>
+                        <h5 class="modal-title modalbookTitle">詳細情報編集</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                         </button>
@@ -192,17 +192,17 @@
                             <div class="form-row mb-1">                               
                                 <div class="col">
                                     <label for="name">登録者：</label>
-                                    <input type="text" id="name" class="form-control" placeholder="OO OO" disabled>
+                                    <input type="text" id="name" class="form-control" placeholder="registretion" disabled>
                                 </div>
                                 <div class="col">
                                     <label for="updated_at">最終更新日：</label>
-                                    <input type="text" id="updated_at" class="form-control" placeholder="2020/03/15" disabled>
+                                    <input type="text" id="updated_at" class="form-control" placeholder="yyyy/MM/dd" disabled>
                                 </div>
                             </div>
                             <div class="form-row mb-1">
                                 <div class="col">
                                     <label for="amazon_url">アマゾンURL：</label>
-                                    <input type="text" id="amazon_url" class="form-control" placeholder="https://goole.com" disabled>
+                                    <input type="text" id="amazon_url" class="form-control" placeholder="https://xxxx.xxx" disabled>
                                 </div>
                             </div>
                         </form>
