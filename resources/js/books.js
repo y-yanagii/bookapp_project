@@ -23,9 +23,11 @@ $('.newBookbtn').on('click', function() {
   // input, imgを情報をクリア
   $('.book-info-modal-lg').find('input').val("").text("");
   $('.book-info-modal-lg').find('img').attr("src", "");
+  $('.newOrUpdateBook-btn').text('新規');
 });
 
 // 本一覧liタグ押下時のモーダル表示
 $('.bookRow').on('click', function(event) {
   $('.modalbookTitle').text('詳細情報編集');
+  $('.newOrUpdateBook-btn').text('更新');
 });
