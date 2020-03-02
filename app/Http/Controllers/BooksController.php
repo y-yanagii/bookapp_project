@@ -22,7 +22,8 @@ class BooksController extends Controller
     }
 
     // 本情報新規登録処理
-    public function newBook(Book $book) {
-        
+    public function new(Request $request) {
+
+        return redirect('/');
     }
 }

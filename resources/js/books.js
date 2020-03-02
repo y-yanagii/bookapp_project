@@ -17,17 +17,39 @@ $('.loginInfoLi').on('click', function() {
   }
 });
 
-// 本情報新規登録ボタン押下時
+// 本情報新規登録ボタン押下時(モーダル表示)
 $('.newBookbtn').on('click', function() {
   $('.modalbookTitle').text('本情報新規登録');
   // input, imgを情報をクリア
   $('.book-info-modal-lg').find('input').val("").text("");
   $('.book-info-modal-lg').find('img').attr("src", "");
-  $('.newOrUpdateBook-btn').text('新規');
+  $('.newOrUpdateBook-btn').text('新規').removeClass("editBookBtn").addClass("newBookBtn");
 });
 
-// 本一覧liタグ押下時のモーダル表示
+// 本一覧liタグ押下時のモーダル表示(モーダル表示)
 $('.bookRow').on('click', function(event) {
   $('.modalbookTitle').text('詳細情報編集');
-  $('.newOrUpdateBook-btn').text('更新');
+  $('.newOrUpdateBook-btn').text('更新').removeClass("newBookBtn").addClass("editBookBtn");
+});
+
+// 本情報新規登録、更新時Ajax呼び出し
+$('.newOrUpdateBook-btn').on('click', function() {
+  if ($(this).hasClass('newBookBtn')) {
+    // 本情報新規登録時Ajax
+    $.ajax({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      url: "/books/new",
+      type: 'POST',
+      data: {'price': 10}
+    })
+    .done(function(data) {
+      // Ajaxリクエストが成功した場合
+      alert('Ajax通信成功！！！');
+    });
+  } else {
+    // 本情報編集更新時Ajax
+  }
+  
 });

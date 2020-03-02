@@ -157,7 +157,7 @@
                                 </div>
                                 <div class="col">
                                     <label for="price">値段：</label>
-                                    <input id="price" type="text" class="form-control" placeholder="本の値段を入力してください" value="{{  }}">
+                                    <input id="price" type="text" class="form-control" placeholder="本の値段を入力してください" value="">
                                 </div>
                             </div>
                             <div class="form-row mb-1">

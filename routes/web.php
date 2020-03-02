@@ -18,3 +18,4 @@ Route::get('/', 'LoginController@index');
 Route::get('/logout', 'LoginController@logout');
 Route::get('/books', 'BooksController@index');
 Route::get('/chats', 'ChatsController@index');
+Route::post('/books/new', 'BooksController@new');
