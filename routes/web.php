@@ -15,7 +15,9 @@
 //     return view('welcome');
 // });
 Route::get('/', 'LoginController@index');
+Route::get('/login/new', 'LoginController@new');
+Route::post('/login/create', 'LoginController@create');
 Route::get('/logout', 'LoginController@logout');
-Route::get('/books', 'BooksController@index');
+Route::post('/books', 'BooksController@index');
 Route::get('/chats', 'ChatsController@index');
 Route::post('/books/new', 'BooksController@new');

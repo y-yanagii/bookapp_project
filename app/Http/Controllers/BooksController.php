@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\LoginRequest;
 use App\User;
 use App\Book;
 
 class BooksController extends Controller
 {
     // メイン画面初期表示
-    public function index(Request $request) {
+    public function index(LoginRequest $request) {
         // TODO ログイン処理
 
         // 更新日時の降順でユーザ情報全件取得

@@ -31,6 +31,11 @@
                 border-radius: 12px;
             }
 
+            /* ログイン画面inputタグの親div */
+            .loginDiv {
+                max-width: 415.609px;
+            }
+
             /* ログイン画面input */
             .loginDiv input {
                 padding: 8px;
@@ -39,16 +44,24 @@
         </style>
     </head>
     <body style='background-image: url("https://picsum.photos/600/600");'>
-        <div class="container w-100">
+        <div class="container w-100" style="height: 500px;">
             <div class="mt-3 float-right">
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#newLoginModal" data-whatever="@mdo">新規登録</button>
+                <form methos="get" action="{{ url('/login/new') }}">
+                    <button type="submit" class="btn btn-success" data-toggle="modal" data-target="#newLoginModal" data-whatever="@mdo">新規登録</button>
+                </form>
             </div>
             <div>Book Management</div>
-            <form method="get" action="{{ url('/books') }}" class="mt-5 pt-5">
+            <form method="post" action="{{ url('/books') }}" class="mt-5 pt-5">
             {{ csrf_field() }}
                 <div class="row mt-5 pt-5 form-group float-right loginDiv">
-                    <input id="name" class="mt-3 form-control col-sm-10" type="text" name="name" placeholder="UserName">
+                    <input id="name" class="mt-3 form-control col-sm-10" type="text" name="name" placeholder="UserName" value="{{ old('name') }}">
+                    @if ($errors->has('name'))
+                    <label class="text-danger col-sm-10">{{ $errors->first('name') }}</label>
+                    @endif
                     <input id="password" class="mt-2 form-control col-sm-10" type="password" name="password" placeholder="PassWord">
+                    @if ($errors->has('password'))
+                    <label class="text-danger col-sm-10">{{ $errors->first('password') }}</label>
+                    @endif
                     <button class="btn btn-primary mt-3 col-sm-10" type="submit">ログイン</button>
                 </div>
             </form>
