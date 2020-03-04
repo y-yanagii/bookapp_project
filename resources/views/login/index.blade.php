@@ -44,10 +44,20 @@
         </style>
     </head>
     <body style='background-image: url("https://picsum.photos/600/600");'>
+        <!-- ↓↓↓ユーザ新規登録アラート↓↓↓ -->
+        @if(Session::has('saveMessage'))
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            <strong>お知らせ!</strong> メッセージ：{{ session('saveMessage') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        @endif
+        <!-- ↑↑↑ユーザ新規登録アラート↑↑↑ -->
         <div class="container w-100" style="height: 500px;">
             <div class="mt-3 float-right">
-                <form methos="get" action="{{ url('/login/new') }}">
-                    <button type="submit" class="btn btn-success" data-toggle="modal" data-target="#newLoginModal" data-whatever="@mdo">新規登録</button>
+                <form method="get" action="{{ url('/login/new') }}">
+                    <button type="submit" class="btn btn-success">新規登録</button>
                 </form>
             </div>
             <div>Book Management</div>

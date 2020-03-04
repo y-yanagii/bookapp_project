@@ -12,6 +12,12 @@ class BooksController extends Controller
     // メイン画面初期表示
     public function index(LoginRequest $request) {
         // TODO ログイン処理
+        $loginUser = User::where('name', $request->name)->where('password', $request->password);
+        if ($loginUser > 0) {
+
+        } else {
+            return redirect('/');
+        }
 
         // 更新日時の降順でユーザ情報全件取得
         $users = User::latest()->get();

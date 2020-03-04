@@ -25,6 +25,11 @@
                 border-radius: 1.25rem !important;
             }
 
+            /* キャンセルボタン */
+            .cancelAnkerLink {
+                float: right;
+            }
+
             /* キャンセル、新規登録ボタンの親div */
             .newLoginFooter {
                 display: flex;
@@ -41,14 +46,14 @@
     <body>
         <div class="container w-100" style="height: 500px;">
             <div class="card mt-5">
-                <h5 class="card-header">ユーザ新規登録</h5>
+                <h5 class="card-header">ユーザ新規登録<a href="{{ url('/') }}" class="cancelAnkerLink">X</a></h5>
                 <div class="card-body">
                     <form method="post" action="{{ url('/login/create') }}" class="my-3">
                     {{ csrf_field() }}
                         <div class="form-group row">
                             <label for="name" class="col-sm-2 col-form-label">ユーザ名:</label>
                             <div class="col-sm-6">
-                                <input type="text" class="form-control" id="name" placeholder="ユーザ名" value="{{ old('name') }}">
+                                <input type="text" id="name" name="name" class="form-control" placeholder="ユーザ名" value="{{ old('name') }}">
                                 @if ($errors->has('name'))
                                 @foreach($errors->get('name') as $error)
                                     <label class="text-danger">{{ $error }}</label>
@@ -60,7 +65,7 @@
                             <div class="form-group row">
                             <label for="password" class="col-sm-2 col-form-label">パスワード:</label>
                             <div class="col-sm-6">
-                                <input type="password" class="form-control" id="password" placeholder="パスワード">
+                                <input type="password" id="password" name="password" class="form-control" placeholder="パスワード">
                                 @if ($errors->has('password'))
                                 @foreach($errors->get('password') as $error)
                                     <label class="text-danger">{{ $error }}</label>
@@ -71,7 +76,7 @@
                         </div>
                         <div class="form-group row newLoginFooter">
                             <div class="col-sm-6">
-                            <button type="button" class="btn btn-secondary">キャンセル</button>
+                            <button type="button" href="{{ url('/') }}" class="btn btn-secondary">キャンセル</button>
                             <button type="submit" class="btn btn-primary">新規登録</button>
                             </div>
                         </div>

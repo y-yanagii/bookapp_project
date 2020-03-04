@@ -20,7 +20,13 @@ class LoginController extends Controller
 
     // 新規登録ユーザ保存処理
     public function create(LoginRequest $request) {
-        dd($request);
+        $user = new User();
+        $user->name = $request->name;
+        $user->password = $request->password;
+        $user->save();
+
+        // メッセージを返しユーザ登録のアラートを表示
+        $request->session()->flash('saveMessage', '新規ユーザを登録しました。');
         return redirect('/');
     }
 
