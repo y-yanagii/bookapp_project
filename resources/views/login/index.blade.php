@@ -71,42 +71,13 @@
                     <input id="password" class="mt-2 form-control col-sm-10" type="password" name="password" placeholder="PassWord">
                     @if ($errors->has('password'))
                     <label class="text-danger col-sm-10">{{ $errors->first('password') }}</label>
+                    @elseif (Session::has('loginFailed'))
+                    <label class="text-danger col-sm-10">{{ session('loginFailed') }}</label>
                     @endif
                     <button class="btn btn-primary mt-3 col-sm-10" type="submit">ログイン</button>
                 </div>
             </form>
         </div>
-
-        <!-- ↓↓↓新規登録モーダル部分↓↓↓ -->
-        <div class="modal fade" id="newLoginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                <div class="modal-header bg-success">
-                    <h5 class="modal-title text-white" id="exampleModalLabel">新規ユーザ登録</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                    <div class="form-group">
-                        <label for="name" class="col-form-label">ユーザ名:</label>
-                        <input type="text" class="form-control" id="name" placeholder="ユーザ名">
-                    </div>
-                    <div class="form-group">
-                        <label for="password" class="col-form-label">パスワード:</label>
-                        <input type="password" class="form-control" id="password" placeholder="パスワード">
-                    </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
-                    <button type="button" class="btn btn-primary">新規登録</button>
-                </div>
-                </div>
-            </div>
-        </div>
-        <!-- ↑↑↑新規登録モーダル部分↑↑↑ -->
         <script src="{{ asset('js/login.js') }}"></script>
     </body>
 </html>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\LoginRequest;
+use App\Http\Requests\LoginCreateRequest;
 use App\User;
 
 class LoginController extends Controller
@@ -19,10 +20,10 @@ class LoginController extends Controller
     }
 
     // 新規登録ユーザ保存処理
-    public function create(LoginRequest $request) {
+    public function create(LoginCreateRequest $request) {
         $user = new User();
         $user->name = $request->name;
-        $user->password = $request->password;
+        $user->password = password_hash($request->password, PASSWORD_DEFAULT);
         $user->save();
 
         // メッセージを返しユーザ登録のアラートを表示
