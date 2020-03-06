@@ -22,7 +22,6 @@ $('.newBookbtn').on('click', function() {
   $('.modalbookTitle').text('本情報新規登録');
   // input, imgを情報をクリア
   $('.book-info-modal-lg').find('input').val("").text("");
-  $('.book-info-modal-lg').find('img').attr("src", "");
   $('.newOrUpdateBook-btn').text('新規').removeClass("editBookBtn").addClass("newBookBtn");
 });
 
@@ -40,11 +39,16 @@ $('.newOrUpdateBook-btn').on('click', function() {
       headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       },
-      url: "/books/new",
+      url: "/books/create",
       type: 'POST',
-      data: {'price': 10}
+      data: {'price': 10},
+      error: function(data) {
+        debugger;
+        //alert(data.responseText);
+      }
     })
     .done(function(data) {
+      debugger;
       // Ajaxリクエストが成功した場合
       alert('Ajax通信成功！！！');
     });

@@ -147,32 +147,52 @@
                     </div>
                     <div class="modal-body">
                         <div class="bookImgDiv mb-2">
-                            <img class="img-thumbnail" src="https://picsum.photos/200/300" alt="Thumbnail image">
+                            <img class="img-thumbnail" src="https://placehold.jp/200x300.png" alt="Thumbnail image" style="width: 200px; height: 300px;">
                         </div>
                         <form>
                             <div class="form-row mb-1">
                                 <div class="col">
                                     <label for="uploadFile">本画像：</label>
-                                    <input id="uploadFile" type="file" class="form-control-file">
+                                    <input name="url" id="uploadFile" type="file" class="form-control-file">
                                 </div>
                                 <div class="col">
                                     <label for="price">値段：</label>
-                                    <input id="price" type="text" class="form-control" placeholder="本の値段を入力してください" value="">
+                                    <input name="price" id="price" type="text" class="form-control" placeholder="本の値段を入力してください" value="" maxlength="7">
+                                    @if ($errors->has('price'))
+                                    @foreach($errors->get('price') as $error)
+                                        <label class="text-danger">{{ $error }}</label>
+                                    @endforeach
+                                    @endif
                                 </div>
                             </div>
                             <div class="form-row mb-1">
                                 <div class="col">
                                     <label for="book_name">タイトル：</label>
-                                    <input id="book_name" type="text" class="form-control" placeholder="本の題名を入力してください">
+                                    <input name="book_name" id="book_name" type="text" class="form-control" placeholder="本の題名を入力してください" maxlength="100">
+                                    @if ($errors->has('book_name'))
+                                    @foreach($errors->get('book_name') as $error)
+                                        <label class="text-danger">{{ $error }}</label>
+                                    @endforeach
+                                    @endif
                                 </div>
                             </div>
                             <div class="form-row mb-1">
                                 <div class="col">
                                     <label for="total_page">現P／総P：</label>
                                     <div class="current-total-pageDiv">
-                                        <input id="current_page" type="text" class="form-control" placeholder="OOO">
+                                        <input name="current_page" id="current_page" type="text" class="form-control" placeholder="1〜9" maxlength="4">
                                         <span class="slashPageSpan">／</span>
-                                        <input id="total_page" type="text" class="form-control" placeholder="OOO">
+                                        <input name="total_page" id="total_page" type="text" class="form-control" placeholder="1〜9" maxlength="4">
+                                        @if ($errors->has('current_page'))
+                                        @foreach($errors->get('current_page') as $error)
+                                            <label class="text-danger">{{ $error }}</label>
+                                        @endforeach
+                                        @endif
+                                        @if ($errors->has('total_page'))
+                                        @foreach($errors->get('total_page') as $error)
+                                            <label class="text-danger">{{ $error }}</label>
+                                        @endforeach
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="col">
@@ -191,18 +211,18 @@
                             </div>
                             <div class="form-row mb-1">                               
                                 <div class="col">
-                                    <label for="name">登録者：</label>
-                                    <input type="text" id="name" class="form-control" placeholder="registretion" disabled>
+                                    <label for="registered_id">登録者：</label>
+                                    <input name="registered_id" type="text" id="registered_id" class="form-control" placeholder="registretion" disabled>
                                 </div>
                                 <div class="col">
                                     <label for="updated_at">最終更新日：</label>
-                                    <input type="text" id="updated_at" class="form-control" placeholder="yyyy/MM/dd" disabled>
+                                    <input name="updated_at" type="text" id="updated_at" class="form-control" placeholder="yyyy/MM/dd" disabled>
                                 </div>
                             </div>
                             <div class="form-row mb-1">
                                 <div class="col">
                                     <label for="amazon_url">アマゾンURL：</label>
-                                    <input type="text" id="amazon_url" class="form-control" placeholder="https://xxxx.xxx" disabled>
+                                    <input name="amazon_url" type="text" id="amazon_url" class="form-control" placeholder="http://xxxx.xxx" disabled>
                                 </div>
                             </div>
                         </form>

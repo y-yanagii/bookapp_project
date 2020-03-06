@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\LoginRequest;
+use App\Http\Requests\BookCreateRequest;
 use App\User;
 use App\Book;
 
@@ -28,8 +29,9 @@ class BooksController extends Controller
     }
 
     // 本情報新規登録処理
-    public function new(Request $request) {
-
+    public function create(BookCreateRequest $request) {
+        dd($request);
+        // 現ページ<=総ページであることのチェック
         return redirect('/');
     }
 }
