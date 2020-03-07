@@ -23,14 +23,14 @@ class BookCreateRequest extends FormRequest
      */
     public function rules()
     {
+        // 本情報登録時バリデーションチェック
         return [
-            // 本情報登録時バリデーションチェック
-            'price' => 'max:7|integer',
+            'price' => 'regex:/^[0-9]+$/|max:7',
             'book_name' => 'required|max:100',
-            'current_page' => 'required|max:4|integer',
-            'total_page' => 'required|max:4|integer'
-            // 'purchase_type' =>
+            'current_page' => 'required|regex:/^[0-9]+$/|max:4',
+            'total_page' => 'required|regex:/^[0-9]+$/|max:4'            
         ];
+        // 'purchase_type' =>
     }
 
     /**
@@ -39,16 +39,16 @@ class BookCreateRequest extends FormRequest
      */
     public function messages() {
         return [
+            'price.regex' => '※値段は半角数字で入力してください',
             'price.max' => '※値段は7桁以下で入力してください',
-            'price.integer' => '※値段は半角数字で入力してください',
             'book_name.required' => '※タイトルは必須項目です',
             'book_name.max' => '※タイトルは100文字以下で入力してください',
             'current_page.required' => '※現ページは必須項目です',
             'current_page.max' => '※現ページは4桁以下で入力してください',
-            'current_page.integer' => '※現ページは半角数字で入力してください',
+            'current_page.regex' => '※現ページは半角数字で入力してください',
             'total_page.required' => '※総ページは必須項目です',
             'total_page.max' => '※総ページは4桁以下で入力してください',
-            'total_page.integer' => '※総ページは半角数字で入力してください'
+            'total_page.regex' => '※総ページは半角数字で入力してください'
         ];
     }
 }

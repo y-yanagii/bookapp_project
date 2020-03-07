@@ -25,7 +25,9 @@
                 <!-- 新規登録、ログアウトボタン領域 -->
                 <div class="col-lg-7">
                     <button class="btn btn-dark m-2 float-right" data-toggle="modal" data-target="#logoutModal">ログアウト</button>
-                    <button class="btn btn-success m-2 float-right newBookbtn" href="{{ url('BooksController@new') }}" data-toggle="modal" data-target=".book-info-modal-lg">本登録</button>
+                    <form method="get" action=" {{ url('/books/new') }} ">
+                        <button class="btn btn-success m-2 float-right">本登録</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -157,42 +159,22 @@
                                 </div>
                                 <div class="col">
                                     <label for="price">値段：</label>
-                                    <input name="price" id="price" type="text" class="form-control" placeholder="本の値段を入力してください" value="" maxlength="7">
-                                    @if ($errors->has('price'))
-                                    @foreach($errors->get('price') as $error)
-                                        <label class="text-danger">{{ $error }}</label>
-                                    @endforeach
-                                    @endif
+                                    <input name="price" id="price" type="text" class="form-control modalPrice" placeholder="本の値段を入力してください" value="" maxlength="7">
                                 </div>
                             </div>
                             <div class="form-row mb-1">
                                 <div class="col">
                                     <label for="book_name">タイトル：</label>
-                                    <input name="book_name" id="book_name" type="text" class="form-control" placeholder="本の題名を入力してください" maxlength="100">
-                                    @if ($errors->has('book_name'))
-                                    @foreach($errors->get('book_name') as $error)
-                                        <label class="text-danger">{{ $error }}</label>
-                                    @endforeach
-                                    @endif
+                                    <input name="book_name" id="book_name" type="text" class="form-control modalBookName" placeholder="本の題名を入力してください" maxlength="100">
                                 </div>
                             </div>
                             <div class="form-row mb-1">
-                                <div class="col">
+                                <div class="col ctpParentDiv">
                                     <label for="total_page">現P／総P：</label>
                                     <div class="current-total-pageDiv">
-                                        <input name="current_page" id="current_page" type="text" class="form-control" placeholder="1〜9" maxlength="4">
+                                        <input name="current_page" id="current_page" type="text" class="form-control modalCurrentPage" placeholder="1〜9" maxlength="4">
                                         <span class="slashPageSpan">／</span>
-                                        <input name="total_page" id="total_page" type="text" class="form-control" placeholder="1〜9" maxlength="4">
-                                        @if ($errors->has('current_page'))
-                                        @foreach($errors->get('current_page') as $error)
-                                            <label class="text-danger">{{ $error }}</label>
-                                        @endforeach
-                                        @endif
-                                        @if ($errors->has('total_page'))
-                                        @foreach($errors->get('total_page') as $error)
-                                            <label class="text-danger">{{ $error }}</label>
-                                        @endforeach
-                                        @endif
+                                        <input name="total_page" id="total_page" type="text" class="form-control modalTotalPage" placeholder="1〜9" maxlength="4">
                                     </div>
                                 </div>
                                 <div class="col">

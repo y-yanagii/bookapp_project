@@ -165,7 +165,7 @@
         <!-- Fotter領域 -->
         <div class="container bg-dark mt-4 fotterDiv">
             <nav class="nav">
-                <a class="nav-link text-light active" href="{{ url('/books') }}">本管理一覧</a>
+                <a class="nav-link text-light active" href="{{ action('BooksController@indexRefresh') }}">本管理一覧</a>
                 <a class="nav-link text-light" href="{{ url('/chats') }}">チャット</a>
                 <a class="nav-link text-light exportAnchorlink" data-toggle="modal" data-target=".exportModal-lg">エクスポート</a>
             </nav>

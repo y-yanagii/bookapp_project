@@ -25,28 +25,24 @@
                 border-radius: 1.25rem !important;
             }
 
-            /* キャンセルボタン */
-            .cancelAnkerLink {
+            /* 新規登録ボタンの親div */
+            .newLoginFooter * {
                 float: right;
+                margin: 0.25rem;
             }
-
-            /* キャンセル、新規登録ボタンの親div */
-            .newLoginFooter {
-                display: flex;
-                flex-wrap: wrap;
-                align-items: center;
-                justify-content: flex-end;
-                padding: 0.75rem;
-            }
-                .newLoginFooter * {
-                    margin: 0.25rem;
-                }
         </style>
     </head>
     <body>
         <div class="container w-100" style="height: 500px;">
+            <div class="row mt-3">
+                <div class="col-lg-12">
+                    <form class="float-right" method="get" action="{{ url('/') }}">
+                        <button type="submit" name="back" class="btn btn-success">戻る</button>
+                    </form>
+                </div>
+            </div>
             <div class="card mt-5">
-                <h5 class="card-header">ユーザ新規登録<a href="{{ url('/') }}" class="cancelAnkerLink">X</a></h5>
+                <h5 class="card-header">ユーザ新規登録</h5>
                 <div class="card-body">
                     <form method="post" action="{{ url('/login/create') }}" class="my-3">
                     {{ csrf_field() }}
@@ -62,7 +58,7 @@
                             </div>
                             <div class="col-sm-4"><!-- 空div --></div>
                         </div>
-                            <div class="form-group row">
+                        <div class="form-group row">
                             <label for="password" class="col-sm-2 col-form-label">パスワード:</label>
                             <div class="col-sm-6">
                                 <input type="password" id="password" name="password" class="form-control" placeholder="パスワード">
@@ -75,10 +71,11 @@
                             <div class="col-sm-4"><!-- 空div --></div>
                         </div>
                         <div class="form-group row newLoginFooter">
+                            <div class="col-sm-2"><!-- 空div --></div>
                             <div class="col-sm-6">
-                            <button type="button" href="{{ url('/') }}" class="btn btn-secondary">キャンセル</button>
-                            <button type="submit" class="btn btn-primary">新規登録</button>
+                                <button type="submit" name="create" class="btn btn-primary">新規登録</button>
                             </div>
+                            <div class="col-sm-4"><!-- 空div --></div>
                         </div>
                     </form>
                 </div>

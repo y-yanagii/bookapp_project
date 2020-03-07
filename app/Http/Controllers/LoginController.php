@@ -21,6 +21,14 @@ class LoginController extends Controller
 
     // 新規登録ユーザ保存処理
     public function create(LoginCreateRequest $request) {
+
+        // 戻るボタンが押下された場合Back
+        if ($request->get('action') === 'back') {
+            // 入力画面へ戻る
+            return redirect('/');
+        }
+
+
         $user = new User();
         $user->name = $request->name;
         $user->password = password_hash($request->password, PASSWORD_DEFAULT);

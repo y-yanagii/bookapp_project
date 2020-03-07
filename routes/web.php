@@ -19,5 +19,7 @@ Route::get('/login/new', 'LoginController@new');
 Route::post('/login/create', 'LoginController@create');
 Route::get('/logout', 'LoginController@logout');
 Route::post('/books', 'BooksController@index');
+Route::get('/books', 'BooksController@indexRefresh');
 Route::get('/chats', 'ChatsController@index');
+Route::get('/books/new', 'BooksController@new');
 Route::post('/books/create', 'BooksController@create');
