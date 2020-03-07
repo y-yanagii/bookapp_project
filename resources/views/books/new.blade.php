@@ -24,7 +24,7 @@
                     <div class="bookImgDiv mb-2">
                         <img class="img-thumbnail" src="https://placehold.jp/150x250.png" alt="Thumbnail image" style="width: 150px; height: 250px;">
                     </div>
-                    <form method="post" action="{{ url('/books/create') }}">
+                    <form method="post" action="{{ url('/books/create') }}" enctype="multipart/form-data">
                     {{ csrf_field() }}
                         <div class="form-row mb-1">
                             <div class="col">
@@ -75,14 +75,19 @@
                                 <label for="purchase_type">購入区分：</label>
                                 <div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="purchase_type" id="purchase_type0">
+                                        <input class="form-check-input" type="radio" name="purchase_type" id="purchase_type0" value="0" <?php print ((old('purchase_type')== "0") ? " checked" : ""); ?>>
                                         <label class="form-check-label" for="purchase_type0">購入前</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="purchase_type" id="purchase_type1">
+                                        <input class="form-check-input" type="radio" name="purchase_type" id="purchase_type1" value="1" <?php print ((old('purchase_type')== "1") ? " checked" : ""); ?>>
                                         <label class="form-check-label" for="purchase_type1">購入済</label>
                                     </div>
                                 </div>
+                                @if ($errors->has('purchase_type'))
+                                @foreach($errors->get('purchase_type') as $error)
+                                    <label class="text-danger">{{ $error }}</label>
+                                @endforeach
+                                @endif
                             </div>  
                         </div>
                         <div class="form-row mb-1">                               

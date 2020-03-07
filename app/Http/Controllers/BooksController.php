@@ -45,7 +45,7 @@ class BooksController extends Controller
 
     // 本情報新規登録処理
     public function create(BookCreateRequest $request) {
-        dd($request);
+        dd($request->all());
         // 現ページ<=総ページであることのチェック
         return redirect('/');
     }
