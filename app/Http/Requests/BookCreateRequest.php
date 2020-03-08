@@ -25,7 +25,7 @@ class BookCreateRequest extends FormRequest
     {
         // 本情報登録時バリデーションチェック
         return [
-            'url' => 'image',
+            'book_file' => 'image',
             'price' => 'regex:/^[0-9]+$/|max:7',
             'book_name' => 'required|max:100',
             'current_page' => 'required|regex:/^[0-9]+$/|max:4',
@@ -40,7 +40,7 @@ class BookCreateRequest extends FormRequest
      */
     public function messages() {
         return [
-            'url' => '※ファイルの拡張子はjpg、png、bmp、gif、svgのみ許容します',
+            'book_file' => '※ファイルの拡張子はjpg、png、bmp、gif、svgのみ許容します',
             'price.regex' => '※値段は半角数字で入力してください',
             'price.max' => '※値段は7桁以下で入力してください',
             'book_name.required' => '※タイトルは必須項目です',

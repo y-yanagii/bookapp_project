@@ -1,6 +1,14 @@
 @extends('layouts.default')
 
 @section('content')
+        @if(Session::has('bookFailed'))
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            <strong>お知らせ!</strong> メッセージ：{{ session('bookFailed') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        @endif
         <!-- Hedder領域 -->
         <div class="container">
             <div class="row">
@@ -46,15 +54,22 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($books as $book)
                     <tr class="bookRow" data-toggle="modal" data-target=".book-info-modal-lg">
-                        <th scope="row"><img class="img-thumbnail" src="https://picsum.photos/50/60" alt="Thumbnail image"></th>
-                        <td>Laravel入門</td>
-                        <td>柳澤　良幸</td>
-                        <td>購入済み</td>
-                        <td>45%</td>
-                        <td>2020/02/14 15:00</td>
+                        <th scope="row"><img class="img-thumbnail" src="/storage/app/{{ $book->url }}" alt="image" style="width: 50px; height: 60;"></th>
+                        <td>{{ $book->book_name }}</td>
+                        <td>{{ $book->registered_name }}</td>
+                        <td>@if ($book->purchase_type == "1")
+                                購入済み
+                            @else
+                                購入前
+                            @endif</td>
+                        <td>{{ $book->current_page }} / {{ $book->total_page }}P</td>
+                        <td>{{ $book->updated_at }}</td>
                         <td class="deleteBook"><a>🗑Del</a></td>
                     </tr>
+                    @endforeach
+                    
                     <tr class="bookRow" data-toggle="modal" data-target=".book-info-modal-lg">
                         <th scope="row"><img class="img-thumbnail" src="https://picsum.photos/50/60" alt="Thumbnail image"></th>
                         <td>Laravel中級</td>

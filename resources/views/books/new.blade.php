@@ -28,8 +28,8 @@
                     {{ csrf_field() }}
                         <div class="form-row mb-1">
                             <div class="col">
-                                <label for="uploadFile">本画像：</label>
-                                <input name="url" id="uploadFile" type="file" class="form-control-file">
+                                <label for="book_file">本画像：</label>
+                                <input name="book_file" id="book_file" type="file" class="form-control-file">
                             </div>
                             <div class="col">
                                 <label for="price">値段：</label>

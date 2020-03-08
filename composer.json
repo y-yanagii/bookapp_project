@@ -9,10 +9,12 @@
     "license": "MIT",
     "require": {
         "php": "^7.2",
+        "doctrine/dbal": "^2.10",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "^6.0",
         "laravel/tinker": "^1.0",
-        "laravel/ui": "^1.1"
+        "laravel/ui": "^1.1",
+        "nesbot/carbon": "^2.31"
     },
     "require-dev": {
         "filp/whoops": "^2.0",
