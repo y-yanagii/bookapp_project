@@ -32,6 +32,16 @@ $('.deleteBook').on('click', function(e) {
     return false;
   } else {
       /*　OKの時の処理 */
+      var bookID = clickEle.attr('data-book-id');
+
+      $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url: "{{ action('BooksController@destroy', ['book_id' => $book->id]) }}",
+        type: 'POST',
+        data: {'id': bookID, '_method': 'DELETE'}
+    })
   }
 
   e.stopPropagation();

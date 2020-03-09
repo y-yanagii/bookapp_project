@@ -66,7 +66,7 @@
                             @endif</td>
                         <td>{{ $book->current_page }}P / {{ $book->total_page }}P</td>
                         <td>{{ $book->updated_at }}</td>
-                        <td class="deleteBook"><a>🗑Del</a></td>
+                        <td class="deleteBook" data-book-id="{{ $book->id }}"><a>🗑Del</a></td>
                     </tr>
                     @endforeach
                 </tbody>

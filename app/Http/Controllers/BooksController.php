@@ -99,4 +99,16 @@ class BooksController extends Controller
         //削除
         //session()->forget('kudamono');
     }
+
+    // 本情報削除処理
+    public function destroy(Request $request) {
+        // 本情報デリート処理
+        dd($request);
+
+        // 本情報の全権取得
+        $books = Book::latest()->get();
+        $request->session()->flash('bookFailed', '※本情報を削除しました!');
+
+        return redirect('/books')->with('books', $books);
+    }
 }

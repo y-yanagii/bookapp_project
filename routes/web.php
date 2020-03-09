@@ -23,3 +23,4 @@ Route::get('/books', 'BooksController@indexRefresh');
 Route::get('/chats', 'ChatsController@index');
 Route::get('/books/new', 'BooksController@new');
 Route::post('/books/create', 'BooksController@create');
+Route::delete('/books/{id}/destroy', 'BooksController@destroy');
