@@ -37090,6 +37090,17 @@ $('.bookRow').on('click', function (event) {
   $(".displayNoneErrors").remove();
   $('.modalbookTitle').text('詳細情報編集');
   $('.newOrUpdateBook-btn').text('更新').removeClass("newBookBtn").addClass("editBookBtn");
+}); // 本情報の削除
+
+$('.deleteBook').on('click', function (e) {
+  if (!confirm('本当に削除しますか？')) {
+    /* キャンセルの時の処理 */
+    return false;
+  } else {
+    /*　OKの時の処理 */
+  }
+
+  e.stopPropagation();
 });
 
 /***/ }),

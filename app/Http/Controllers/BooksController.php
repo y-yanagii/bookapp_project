@@ -58,11 +58,14 @@ class BooksController extends Controller
         $bookInfo->registered_name = Crypt::decryptString(session('loginName'));
 
         if ($request->has('book_file')) {
-            // ファイル名セット
-            $file_name = $request->file('book_file')->getClientOriginalName();
             // ファイルアップロード(ファイル名_yyyymmddHHiiss)
             $now = Carbon::now();
-            $bookInfo->url = $request->file('book_file')->storeAs('', $now->format('YmdHis') . "_" . $file_name);
+            // ファイル名セット
+            $file_name = $now->format('YmdHis') . "_" . $request->file('book_file')->getClientOriginalName();
+            $bookInfo->url = $file_name;
+
+            // ファイルアップロード処理
+            $request->file('book_file')->storeAs('public', $file_name);
         }
 
         $bookInfo->save();

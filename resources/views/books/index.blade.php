@@ -56,7 +56,7 @@
                 <tbody>
                     @foreach ($books as $book)
                     <tr class="bookRow" data-toggle="modal" data-target=".book-info-modal-lg">
-                        <th scope="row"><img class="img-thumbnail" src="/storage/app/{{ $book->url }}" alt="image" style="width: 50px; height: 60;"></th>
+                        <th scope="row"><img class="img-thumbnail" src="/storage/{{ $book->url }}" alt="image" style="width: 50px; height: 60;"></th>
                         <td>{{ $book->book_name }}</td>
                         <td>{{ $book->registered_name }}</td>
                         <td>@if ($book->purchase_type == "1")
@@ -64,75 +64,11 @@
                             @else
                                 購入前
                             @endif</td>
-                        <td>{{ $book->current_page }} / {{ $book->total_page }}P</td>
+                        <td>{{ $book->current_page }}P / {{ $book->total_page }}P</td>
                         <td>{{ $book->updated_at }}</td>
                         <td class="deleteBook"><a>🗑Del</a></td>
                     </tr>
                     @endforeach
-                    
-                    <tr class="bookRow" data-toggle="modal" data-target=".book-info-modal-lg">
-                        <th scope="row"><img class="img-thumbnail" src="https://picsum.photos/50/60" alt="Thumbnail image"></th>
-                        <td>Laravel中級</td>
-                        <td>柳澤　良幸</td>
-                        <td>購入済み</td>
-                        <td>30%</td>
-                        <td>2020/02/14 15:00</td>
-                        <td class="deleteBook"><a>🗑Del</a></td>
-                    </tr>
-                    <tr class="bookRow" data-toggle="modal" data-target=".book-info-modal-lg">
-                        <th scope="row"><img class="img-thumbnail" src="https://picsum.photos/50/60" alt="Thumbnail image"></th>
-                        <td>Laravel上級</td>
-                        <td>柳澤　良幸</td>
-                        <td>購入済み</td>
-                        <td>55%</td>
-                        <td>2020/02/14 15:00</td>
-                        <td class="deleteBook"><a>🗑Del</a></td>
-                    </tr>
-                    <tr class="bookRow" data-toggle="modal" data-target=".book-info-modal-lg">
-                        <th scope="row"><img class="img-thumbnail" src="https://picsum.photos/50/60" alt="Thumbnail image"></th>
-                        <td>Laravel上級</td>
-                        <td>柳澤　良幸</td>
-                        <td>購入済み</td>
-                        <td>55%</td>
-                        <td>2020/02/14 15:00</td>
-                        <td class="deleteBook"><a>🗑Del</a></td>
-                    </tr>
-                    <tr class="bookRow" data-toggle="modal" data-target=".book-info-modal-lg">
-                        <th scope="row"><img class="img-thumbnail" src="https://picsum.photos/50/60" alt="Thumbnail image"></th>
-                        <td>Laravel上級</td>
-                        <td>柳澤　良幸</td>
-                        <td>購入済み</td>
-                        <td>55%</td>
-                        <td>2020/02/14 15:00</td>
-                        <td class="deleteBook"><a>🗑Del</a></td>
-                    </tr>
-                    <tr class="bookRow" data-toggle="modal" data-target=".book-info-modal-lg">
-                        <th scope="row"><img class="img-thumbnail" src="https://picsum.photos/50/60" alt="Thumbnail image"></th>
-                        <td>Laravel上級</td>
-                        <td>柳澤　良幸</td>
-                        <td>購入済み</td>
-                        <td>55%</td>
-                        <td>2020/02/14 15:00</td>
-                        <td class="deleteBook"><a>🗑Del</a></td>
-                    </tr>
-                    <tr class="bookRow" data-toggle="modal" data-target=".book-info-modal-lg">
-                        <th scope="row"><img class="img-thumbnail" src="https://picsum.photos/50/60" alt="Thumbnail image"></th>
-                        <td>Laravel上級</td>
-                        <td>柳澤　良幸</td>
-                        <td>購入済み</td>
-                        <td>55%</td>
-                        <td>2020/02/14 15:00</td>
-                        <td class="deleteBook"><a>🗑Del</a></td>
-                    </tr>
-                    <tr class="bookRow" data-toggle="modal" data-target=".book-info-modal-lg">
-                        <th scope="row"><img class="img-thumbnail" src="https://picsum.photos/50/60" alt="Thumbnail image"></th>
-                        <td>Laravel上級</td>
-                        <td>柳澤　良幸</td>
-                        <td>購入済み</td>
-                        <td>55%</td>
-                        <td>2020/02/14 15:00</td>
-                        <td class="deleteBook"><a>🗑Del</a></td>
-                    </tr>
                 </tbody>
             </table>
         </div>
