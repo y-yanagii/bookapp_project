@@ -92,17 +92,50 @@ class BooksController extends Controller
             // セッション情報にログイン名がないためログイン画面にリダイレクト
             return redirect('/');
         }
-        
-        //読み出し (view)
-        //{{session('kudamono')}}
+    }
 
-        //削除
-        //session()->forget('kudamono');
+    // 本情報編集画面表示
+    public function edit(Request $request, $id) {
+        $bookInfo = Book::find($id);
+        return view('books.edit')->with('book', $bookInfo);
+    }
+
+    // 本情報更新処理
+    public function update(BookCreateRequest $request, $id) {
+        
+        $book = Book::find($id);
+        $book->book_name = $request->book_name;
+        $book->price = $request->price;
+        $book->current_page = $request->current_page;
+        $book->total_page = $request->total_page;
+        $book->purchase_type = $request->purchase_type;
+
+        // ファイルアップロード処理
+        // 存在チェック
+        if(!$request->file('book_file') == null) {
+            // ファイルアップロード(ファイル名_yyyymmddHHiiss)
+            $now = Carbon::now();
+            // ファイル名セット
+            $file_name = $now->format('YmdHis') . "_" . $request->file('book_file')->getClientOriginalName();
+            $book->url = $file_name;
+
+            // ファイルアップロード処理
+            $request->file('book_file')->storeAs('public', $file_name);
+        }
+
+        $book->save();
+
+        // 本情報の全権取得
+        $books = Book::latest()->get();
+
+        $request->session()->flash('bookFailed', '※' . $request->book_name . 'を更新しました!');
+        return redirect('/books')->with('books', $books);
     }
 
     // 本情報削除処理
     public function destroy(Request $request) {
         // 本情報デリート処理
+        return response()->json($request);
         dd($request);
 
         // 本情報の全権取得

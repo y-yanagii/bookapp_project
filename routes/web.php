@@ -23,4 +23,6 @@ Route::get('/books', 'BooksController@indexRefresh');
 Route::get('/chats', 'ChatsController@index');
 Route::get('/books/new', 'BooksController@new');
 Route::post('/books/create', 'BooksController@create');
-Route::delete('/books/{id}/destroy', 'BooksController@destroy');
+Route::get('/books/{book_id}/edit', 'BooksController@edit')->where('book_id', '[0-9]+');
+Route::post('/books/{id}', 'BooksController@update')->where('id', '[0-9]+');
+Route::post('/books/destroy/{id}', 'BooksController@destroy');

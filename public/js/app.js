@@ -37086,10 +37086,10 @@ $('.loginInfoLi').on('click', function () {
 }); // 本一覧liタグ押下時のモーダル表示(モーダル表示)
 
 $('.bookRow').on('click', function (event) {
-  // エラーメッセージをクリア
-  $(".displayNoneErrors").remove();
-  $('.modalbookTitle').text('詳細情報編集');
-  $('.newOrUpdateBook-btn').text('更新').removeClass("newBookBtn").addClass("editBookBtn");
+  var bookId = $(this).find(".deleteBook").attr('data-book-id');
+  var url = "/books/" + bookId + "/edit";
+  $('#bookEdit').attr('action', url);
+  $('#bookEdit').submit();
 }); // 本情報の削除
 
 $('.deleteBook').on('click', function (e) {
@@ -37098,18 +37098,36 @@ $('.deleteBook').on('click', function (e) {
     return false;
   } else {
     /*　OKの時の処理 */
-    var bookID = clickEle.attr('data-book-id');
-    $.ajax({
+    debugger;
+    var bookID = $(this).attr('data-book-id');
+    var urlStr = "/books/destroy/" + bookID;
+    $.ajaxSetup({
       headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      },
-      url: "{{ action('BooksController@destroy', ['book_id' => $book->id]) }}",
-      type: 'POST',
-      data: {
-        'id': bookID,
-        '_method': 'DELETE'
       }
     });
+    $.ajax({
+      url: urlStr,
+      type: 'POST',
+      data: {
+        'id': bookID
+      },
+      dataType: 'json',
+      cache: false,
+      processData: false
+    }).done(function (data) {
+      debugger;
+    }).fail(function (jqXHR, textStatus, errorThrown) {
+      debugger;
+    }); // $.ajax({
+    //   headers: {
+    //       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //   },
+    //   url: urlStr,
+    //   type: 'POST'
+    // });
+
+    return false;
   }
 
   e.stopPropagation();

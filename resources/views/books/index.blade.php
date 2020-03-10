@@ -41,36 +41,38 @@
         </div>
         <!-- メニューリスト領域一覧領域 -->
         <div class="container booksInfoListDiv">
-            <table class="table table-hover booksInfoListTable">
-                <thead>
-                    <tr class="bg-info">
-                        <th>#</th>
-                        <th>タイトル</th>
-                        <th>登録者</th>
-                        <th>購入区分</th>
-                        <th>進捗率</th>
-                        <th>更新日時</th>
-                        <th>×</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($books as $book)
-                    <tr class="bookRow" data-toggle="modal" data-target=".book-info-modal-lg">
-                        <th scope="row"><img class="img-thumbnail" src="/storage/{{ $book->url }}" alt="image" style="width: 50px; height: 60;"></th>
-                        <td>{{ $book->book_name }}</td>
-                        <td>{{ $book->registered_name }}</td>
-                        <td>@if ($book->purchase_type == "1")
-                                購入済み
-                            @else
-                                購入前
-                            @endif</td>
-                        <td>{{ $book->current_page }}P / {{ $book->total_page }}P</td>
-                        <td>{{ $book->updated_at }}</td>
-                        <td class="deleteBook" data-book-id="{{ $book->id }}"><a>🗑Del</a></td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+            <form id="bookEdit" method="get">
+                <table class="table table-hover booksInfoListTable">
+                    <thead>
+                        <tr class="bg-info">
+                            <th>#</th>
+                            <th>タイトル</th>
+                            <th>登録者</th>
+                            <th>購入区分</th>
+                            <th>進捗率</th>
+                            <th>更新日時</th>
+                            <th>×</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($books as $book)
+                        <tr class="bookRow">
+                            <th scope="row"><img class="img-thumbnail" src="/storage/{{ $book->url }}" alt="image" style="width: 50px; height: 60;"></th>
+                            <td>{{ $book->book_name }}</td>
+                            <td>{{ $book->registered_name }}</td>
+                            <td>@if ($book->purchase_type == "1")
+                                    購入済み
+                                @else
+                                    購入前
+                                @endif</td>
+                            <td>{{ $book->current_page }}P / {{ $book->total_page }}P</td>
+                            <td>{{ $book->updated_at }}</td>
+                            <td class="deleteBook" data-book-id="{{ $book->id }}"><a>🗑Del</a></td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </form>
         </div>
         <div class="container mt-1">
             <nav aria-label="Page navigation example">
@@ -87,85 +89,4 @@
                 </ul>
             </nav>
         </div>
-
-        <!-- ↓↓↓本詳細情報、本登録モーダル領域↓↓↓ -->
-        <div class="modal fade book-info-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title modalbookTitle">詳細情報編集</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="bookImgDiv mb-2">
-                            <img class="img-thumbnail" src="https://placehold.jp/200x300.png" alt="Thumbnail image" style="width: 200px; height: 300px;">
-                        </div>
-                        <form>
-                            <div class="form-row mb-1">
-                                <div class="col">
-                                    <label for="uploadFile">本画像：</label>
-                                    <input name="url" id="uploadFile" type="file" class="form-control-file">
-                                </div>
-                                <div class="col">
-                                    <label for="price">値段：</label>
-                                    <input name="price" id="price" type="text" class="form-control modalPrice" placeholder="本の値段を入力してください" value="" maxlength="7">
-                                </div>
-                            </div>
-                            <div class="form-row mb-1">
-                                <div class="col">
-                                    <label for="book_name">タイトル：</label>
-                                    <input name="book_name" id="book_name" type="text" class="form-control modalBookName" placeholder="本の題名を入力してください" maxlength="100">
-                                </div>
-                            </div>
-                            <div class="form-row mb-1">
-                                <div class="col ctpParentDiv">
-                                    <label for="total_page">現P／総P：</label>
-                                    <div class="current-total-pageDiv">
-                                        <input name="current_page" id="current_page" type="text" class="form-control modalCurrentPage" placeholder="1〜9" maxlength="4">
-                                        <span class="slashPageSpan">／</span>
-                                        <input name="total_page" id="total_page" type="text" class="form-control modalTotalPage" placeholder="1〜9" maxlength="4">
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <label for="purchase_type">購入区分：</label>
-                                    <div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="purchase_type" id="purchase_type0" value="before_purchase">
-                                            <label class="form-check-label" for="purchase_type0">購入前</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="purchase_type" id="purchase_type1" value="purchased">
-                                            <label class="form-check-label" for="purchase_type1">購入済</label>
-                                        </div>
-                                    </div>
-                                </div>  
-                            </div>
-                            <div class="form-row mb-1">                               
-                                <div class="col">
-                                    <label for="registered_id">登録者：</label>
-                                    <input name="registered_id" type="text" id="registered_id" class="form-control" placeholder="registretion" disabled>
-                                </div>
-                                <div class="col">
-                                    <label for="updated_at">最終更新日：</label>
-                                    <input name="updated_at" type="text" id="updated_at" class="form-control" placeholder="yyyy/MM/dd" disabled>
-                                </div>
-                            </div>
-                            <div class="form-row mb-1">
-                                <div class="col">
-                                    <label for="amazon_url">アマゾンURL：</label>
-                                    <input name="amazon_url" type="text" id="amazon_url" class="form-control" placeholder="http://xxxx.xxx" disabled>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
-                        <button type="button" class="btn btn-primary newOrUpdateBook-btn">更新</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- ↑↑↑本詳細情報、本登録モーダル領域↑↑↑ -->
 @endsection
