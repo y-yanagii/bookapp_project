@@ -26,3 +26,4 @@ Route::post('/books/create', 'BooksController@create');
 Route::get('/books/{book_id}/edit', 'BooksController@edit')->where('book_id', '[0-9]+');
 Route::post('/books/{id}', 'BooksController@update')->where('id', '[0-9]+');
 Route::post('/books/destroy/{id}', 'BooksController@destroy');
+Route::get('/books/search/{purchaseType}', 'BooksController@bookRefine');

@@ -1,3 +1,28 @@
+// 購入区分選択時
+$('input[name="radioPurchaseType"]:radio').change(function() {
+  var purchaseType = $(this).val();
+
+  $.ajax({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    url: '/books/search/' + purchaseType,
+    type: 'GET',
+    data: {'purchaseType': purchaseType},
+    contentType: false,
+    processData: false,
+  })
+  // Ajaxリクエスト成功時の処理
+  .done(function(data) {
+    // 行の入れ替え
+    debugger;
+  })
+  // Ajaxリクエスト失敗時の処理
+  .fail(function(data) {
+      debugger;
+  });
+});
+
 // エクスポート選択時切替
 $('.exportBook-tr').on('click', function() {
   if($(this).hasClass("activeExport")) {

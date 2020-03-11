@@ -96,9 +96,9 @@ class BooksController extends Controller
     }
 
     // 本情報一覧絞り込み検索
-    public function bookRefine($purchaseType) {
+    public function bookRefine(Request $request, $purchaseType) {
         if ($purchaseType != "all") {
-            $books = Book::where('purchase_type', $purchaseType);
+            $books = Book::where('purchase_type', $purchaseType)->get();
         } else {
             $books = Book::latest()->get();
         }

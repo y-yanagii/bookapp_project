@@ -20,13 +20,13 @@
                 <!-- 絞り込みラジオボタン領域 -->
                 <div class="col-lg-3 my-2 btn-group btn-group-toggle" data-toggle="buttons">
                     <label class="btn btn-info active">
-                        <input type="radio" name="options" id="option1" autocomplete="off" value="all" checked> 全て
+                        <input type="radio" name="radioPurchaseType" id="option1" autocomplete="off" value="all" checked> 全て
                     </label>
                     <label class="btn btn-info">
-                        <input type="radio" name="options" id="option2" autocomplete="off" value="before"> 購入前
+                        <input type="radio" name="radioPurchaseType" id="option2" autocomplete="off" value="0"> 購入前
                     </label>
                     <label class="btn btn-info">
-                        <input type="radio" name="options" id="option3" autocomplete="off" value="purchased"> 購入済
+                        <input type="radio" name="radioPurchaseType" id="option3" autocomplete="off" value="1"> 購入済
                     </label>
                 </div>
 
