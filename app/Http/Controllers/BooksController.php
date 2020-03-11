@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\BookCreateRequest;
 use App\User;
@@ -133,15 +134,16 @@ class BooksController extends Controller
     }
 
     // 本情報削除処理
-    public function destroy(Request $request) {
+    public function destroy(Request $request, $id) {
+
+        $book = Book::find($id);
+        if ($book->url != null) {
+            // サーバ上にある画像の削除
+            Storage::delete("/public/" . $book->url);
+        }
+
         // 本情報デリート処理
-        return response()->json($request);
-        dd($request);
-
-        // 本情報の全権取得
-        $books = Book::latest()->get();
-        $request->session()->flash('bookFailed', '※本情報を削除しました!');
-
-        return redirect('/books')->with('books', $books);
+        $book->destroy($id);
+        return response()->json(['id' => $id]);
     }
 }

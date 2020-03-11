@@ -37098,36 +37098,27 @@ $('.deleteBook').on('click', function (e) {
     return false;
   } else {
     /*　OKの時の処理 */
-    debugger;
-    var bookID = $(this).attr('data-book-id');
-    var urlStr = "/books/destroy/" + bookID;
-    $.ajaxSetup({
+    // 選択した本情報のIDを取得
+    var bookId = $(this).attr('data-book-id');
+    $.ajax({
       headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      }
-    });
-    $.ajax({
-      url: urlStr,
+      },
+      url: '/books/destroy/' + bookId,
       type: 'POST',
       data: {
-        'id': bookID
+        'id': bookId
       },
-      dataType: 'json',
-      cache: false,
+      contentType: false,
       processData: false
-    }).done(function (data) {
-      debugger;
-    }).fail(function (jqXHR, textStatus, errorThrown) {
-      debugger;
-    }); // $.ajax({
-    //   headers: {
-    //       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    //   },
-    //   url: urlStr,
-    //   type: 'POST'
-    // });
-
-    return false;
+    }) // Ajaxリクエスト成功時の処理
+    .done(function (data) {
+      // 行の削除
+      $('[data-book-id=' + data["id"] + ']').parents(".bookRow").remove();
+    }) // Ajaxリクエスト失敗時の処理
+    .fail(function (data) {
+      alert('Ajaxリクエスト失敗');
+    });
   }
 
   e.stopPropagation();
