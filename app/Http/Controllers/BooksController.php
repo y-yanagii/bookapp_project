@@ -95,6 +95,17 @@ class BooksController extends Controller
         }
     }
 
+    // 本情報一覧絞り込み検索
+    public function bookRefine($purchaseType) {
+        if ($purchaseType != "all") {
+            $books = Book::where('purchase_type', $purchaseType);
+        } else {
+            $books = Book::latest()->get();
+        }
+        
+        return response()->json(['books' => $books]);
+    }
+
     // 本情報編集画面表示
     public function edit(Request $request, $id) {
         $bookInfo = Book::find($id);
