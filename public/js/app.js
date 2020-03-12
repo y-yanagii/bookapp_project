@@ -37089,7 +37089,7 @@ $('input[name="radioPurchaseType"]:radio').change(function () {
       $('.booksBody').empty(); // 本情報行の作成
 
       Object.keys(data.books).forEach(function (key) {
-        var childDom = ""; // 本情報リストtr
+        var childDom = ""; // 本情報行の作成
 
         childDom = '<tr class="bookRow">';
         childDom += '<th scope="row"><img class="bookRow-thumbnail img-thumbnail" src="/storage/' + data.books[key]['url'] + '" alt="image"></th>';
@@ -37113,7 +37113,7 @@ $('input[name="radioPurchaseType"]:radio').change(function () {
     }
   }) // Ajaxリクエスト失敗時の処理
   .fail(function (data) {
-    debugger;
+    alert('絞り込み検索に失敗しました!');
   });
 }); // エクスポート選択時切替
 

@@ -19,14 +19,14 @@
 
                 <!-- 絞り込みラジオボタン領域 -->
                 <div class="col-lg-3 my-2 btn-group btn-group-toggle" data-toggle="buttons">
-                    <label class="btn btn-info active">
-                        <input type="radio" name="radioPurchaseType" id="option1" autocomplete="off" value="all" checked> 全て
+                    <label class="btn btn-info <?php if(isset($_SESSION["purchaseType"]) && $_SESSION["purchaseType"] == "all") { echo('active'); } ?>">
+                        <input type="radio" name="radioPurchaseType" id="option1" autocomplete="off" value="all" checkd> 全て
                     </label>
-                    <label class="btn btn-info">
+                    <label class="btn btn-info <?php if(Session::has('purchaseType') && session('purchaseType') == "0") { echo("active"); } ?>">
                         <input type="radio" name="radioPurchaseType" id="option2" autocomplete="off" value="0"> 購入前
                     </label>
-                    <label class="btn btn-info">
-                        <input type="radio" name="radioPurchaseType" id="option3" autocomplete="off" value="1"> 購入済
+                    <label class="btn btn-info <?php if(Session::has('purchaseType') && session('purchaseType') == "1") { echo("active"); } ?>">
+                        <input type="radio" name="radioPurchaseType" id="option3" autocomplete="off" value="1" checkd> 購入済
                     </label>
                 </div>
 

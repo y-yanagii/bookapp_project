@@ -40,7 +40,7 @@ class BookCreateRequest extends FormRequest
      */
     public function messages() {
         return [
-            'book_file' => '※ファイルの拡張子はjpg、png、bmp、gif、svgのみ許容します',
+            'book_file.image' => '※ファイルの拡張子はjpg、png、bmp、gif、svgのみ許容します',
             'price.regex' => '※値段は半角数字で入力してください',
             'price.max' => '※値段は7桁以下で入力してください',
             'book_name.required' => '※タイトルは必須項目です',

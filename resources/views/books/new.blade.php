@@ -30,6 +30,11 @@
                             <div class="col">
                                 <label for="book_file">本画像：</label>
                                 <input name="book_file" id="book_file" type="file" class="form-control-file">
+                                @if ($errors->has('book_file'))
+                                @foreach($errors->get('book_file') as $error)
+                                    <label class="text-danger">{{ $error }}</label>
+                                @endforeach
+                                @endif
                             </div>
                             <div class="col">
                                 <label for="price">値段：</label>

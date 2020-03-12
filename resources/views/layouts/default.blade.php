@@ -36,7 +36,7 @@
 
             /* 本情報リストを囲う親DIV */
             .booksInfoListDiv {
-                height: 700px;
+                height: 670px;
                 overflow-y: scroll;
             }
 
@@ -49,6 +49,10 @@
             /* 本情報リストのtd */
             .booksInfoListTable td {
                 vertical-align: middle !important;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                max-width: 100px;
             }
 
             /* エクスポートのフッタ */

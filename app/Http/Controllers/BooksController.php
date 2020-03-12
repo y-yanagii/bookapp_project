@@ -26,6 +26,10 @@ class BooksController extends Controller
             // セッションにログイン名を暗号化しセット
             $encryptedName = Crypt::encryptString($request->name);
             session(['loginName' => $encryptedName]);
+            if (!session()->has('purchaseType')) {
+                // セッションに購入区分が存在しない場合、 購入区分をallとしセット
+                session(['purchaseType' => "all"]);
+            }
 
             return view('books.index')->with('books', $books);
         } else {
@@ -84,8 +88,19 @@ class BooksController extends Controller
         if (session()->has('loginName')) {
             // ログイン名がセッションに存在しかつnullではない場合
 
-            // 本情報の全権取得
-            $books = Book::latest()->get();
+            if (session()->has('purchaseType')) {
+                // セッションに絞り込み検索区分が存在する場合区分ごとWhere句を変更し、取得
+                if (session('purchaseType') != 'all') {
+                    // 本情報を購入区分で取得
+                    $books = Book::where('purchase_type', session('purchaseType'))->get();
+                } else {
+                    // 本情報の全権取得
+                    $books = Book::latest()->get();
+                }
+            } else {
+                // 本情報の全権取得
+                $books = Book::latest()->get();
+            }
 
             return view('books.index')->with('books', $books);
 
@@ -97,6 +112,9 @@ class BooksController extends Controller
 
     // 本情報一覧絞り込み検索
     public function bookRefine(Request $request, $purchaseType) {
+        // 絞り込み検索区分をセッションに保持
+        session(['purchaseType' => $purchaseType]);
+
         if ($purchaseType != "all") {
             $books = Book::where('purchase_type', $purchaseType)->get();
         } else {
