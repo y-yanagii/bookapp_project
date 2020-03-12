@@ -54,10 +54,10 @@
                             <th>×</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="booksBody">
                         @foreach ($books as $book)
                         <tr class="bookRow">
-                            <th scope="row"><img class="img-thumbnail" src="/storage/{{ $book->url }}" alt="image" style="width: 50px; height: 60;"></th>
+                            <th scope="row"><img class="bookRow-thumbnail img-thumbnail" src="/storage/{{ $book->url }}" alt="image"></th>
                             <td>{{ $book->book_name }}</td>
                             <td>{{ $book->registered_name }}</td>
                             <td>@if ($book->purchase_type == "1")

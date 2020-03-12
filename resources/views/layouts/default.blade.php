@@ -40,6 +40,12 @@
                 overflow-y: scroll;
             }
 
+            /* 本情報リストの画像 */
+            .bookRow-thumbnail {
+                width: 50px;
+                height: 60;
+            }
+
             /* 本情報リストのtd */
             .booksInfoListTable td {
                 vertical-align: middle !important;

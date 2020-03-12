@@ -37084,7 +37084,33 @@ $('input[name="radioPurchaseType"]:radio').change(function () {
   }) // Ajaxリクエスト成功時の処理
   .done(function (data) {
     // 行の入れ替え
-    debugger;
+    if (data.books.length > 0) {
+      // 本情報行の削除
+      $('.booksBody').empty(); // 本情報行の作成
+
+      Object.keys(data.books).forEach(function (key) {
+        var childDom = ""; // 本情報リストtr
+
+        childDom = '<tr class="bookRow">';
+        childDom += '<th scope="row"><img class="bookRow-thumbnail img-thumbnail" src="/storage/' + data.books[key]['url'] + '" alt="image"></th>';
+        childDom += '<td>' + data.books[key]['book_name'] + '</td>';
+        childDom += '<td>' + data.books[key]['registered_name'] + '</td>';
+        childDom += '<td>';
+
+        if (data.books[key]['purchase_type'] == "1") {
+          childDom += '購入済み';
+        } else {
+          childDom += '購入前';
+        }
+
+        childDom += '</td>';
+        childDom += '<td>' + data.books[key]['current_page'] + 'P / ' + data.books[key]['total_page'] + 'P</td>';
+        childDom += '<td>' + data.books[key]['updated_at'] + '</td>';
+        childDom += '<td class="deleteBook" data-book-id="' + data.books[key]['id'] + '"><a>🗑Del</a></td>';
+        childDom += '</tr>';
+        $(childDom).appendTo('.booksBody');
+      });
+    }
   }) // Ajaxリクエスト失敗時の処理
   .fail(function (data) {
     debugger;
@@ -37106,16 +37132,16 @@ $('.loginInfoLi').on('click', function () {
     var $userName = $(this).text();
     $('.user-to').text('● ' + $userName);
   }
-}); // 本一覧liタグ押下時のモーダル表示(モーダル表示)
+}); // 本一覧trタグ押下時の詳細表示
 
-$('.bookRow').on('click', function (event) {
+$(document).on('click', '.bookRow', function (event) {
   var bookId = $(this).find(".deleteBook").attr('data-book-id');
   var url = "/books/" + bookId + "/edit";
   $('#bookEdit').attr('action', url);
   $('#bookEdit').submit();
 }); // 本情報の削除
 
-$('.deleteBook').on('click', function (e) {
+$(document).on('click', '.deleteBook', function (e) {
   if (!confirm('本当に削除しますか？')) {
     /* キャンセルの時の処理 */
     return false;
