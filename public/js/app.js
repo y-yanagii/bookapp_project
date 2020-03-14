@@ -37058,6 +37058,8 @@ __webpack_require__(/*! ./login */ "./resources/js/login.js");
 
 __webpack_require__(/*! ./books */ "./resources/js/books.js");
 
+__webpack_require__(/*! ./messages */ "./resources/js/messages.js");
+
 /***/ }),
 
 /***/ "./resources/js/books.js":
@@ -37084,7 +37086,7 @@ $('input[name="radioPurchaseType"]:radio').change(function () {
   }) // Ajaxリクエスト成功時の処理
   .done(function (data) {
     // 行の入れ替え
-    if (data.books.length > 0) {
+    if (data.books !== undefined && data.books.length > 0) {
       // 本情報行の削除
       $('.booksBody').empty(); // 本情報行の作成
 
@@ -37122,15 +37124,6 @@ $('.exportBook-tr').on('click', function () {
     $(this).removeClass("activeExport");
   } else {
     $(this).addClass("activeExport");
-  }
-}); // ユーザ一覧押下時選択切替
-
-$('.loginInfoLi').on('click', function () {
-  if (!$(this).hasClass("active")) {
-    $('.loginInfoLi').removeClass("active");
-    $(this).addClass("active");
-    var $userName = $(this).text();
-    $('.user-to').text('● ' + $userName);
   }
 }); // 本一覧trタグ押下時の詳細表示
 
@@ -37227,15 +37220,100 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// Newボタン押下時イベント
-$('#exampleModal').on('show.bs.modal', function (event) {
-  var button = $(event.relatedTarget); // Button that triggered the modal
 
-  var recipient = button.data('whatever'); // モーダルのdivタグを変数へ代入
 
-  var modal = $(this); // ログイン名、パスワードをclear
+/***/ }),
 
-  $(modal.find('.modal-body input')).val("");
+/***/ "./resources/js/messages.js":
+/*!**********************************!*\
+  !*** ./resources/js/messages.js ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// ユーザ一覧押下時選択切替
+$('.loginInfoLi').on('click', function () {
+  if (!$(this).hasClass("active")) {
+    // ユーザ一覧を選択状態
+    $('.loginInfoLi').removeClass("active");
+    $(this).addClass("active");
+    var $userName = $(this).text();
+    $('.user-to').text('● ' + $userName);
+    var $userId = $(this).attr('data-user-id');
+    $.ajax({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      url: '/chats/' + $userId,
+      type: 'GET',
+      data: {
+        'id': $userId
+      },
+      contentType: false,
+      processData: false
+    }) // Ajaxリクエスト成功時の処理
+    .done(function (data) {
+      // メッセージの入れ替え
+      if (data.messages !== undefined && data.messages.length > 0) {
+        // メッセージ領域の削除
+        $('#bms_messages').empty(); // メッセージ領域の作成
+
+        var childDom = "";
+        Object.keys(data.messages).forEach(function (key) {
+          // メッセージ行の作成
+          if (data.messages[key]['id'] == data.currentId) {
+            // →右サイドメッセージ
+            childDom += '<div class="mycomment"><p>' + data.messages[key]['message'] + '</p></div>';
+          } else {
+            // ←左サイドメッセージ
+            childDom += '<div class="chatting"><p>' + data.messages[key]['message'] + '</p></div>';
+          }
+        }); // メッセージ領域要素追加
+
+        $(childDom).appendTo('#bms_messages');
+      } else {
+        // メッセージ領域の削除
+        $('#bms_messages').empty();
+      }
+    }) // Ajaxリクエスト失敗時の処理
+    .fail(function (data) {
+      alert('チャット情報取得に失敗しました!');
+    });
+  }
+}); // メッセージ送信時保存処理
+
+$('.messageSubmitBtn').on('click', function () {
+  // メッセージ入力している場合のみ、保存処理
+  if ($("#message").val() != "") {
+    var $message = $("#message").val();
+    var $sendUserId = $('.loginInfoLi.active').attr('data-user-id');
+    $.ajax({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      url: '/chats/add',
+      type: 'POST',
+      data: {
+        'id': $sendUserId,
+        'message': $message
+      },
+      contentType: false,
+      processData: false
+    }) // Ajaxリクエスト成功時の処理
+    .done(function (data) {
+      // メッセージの入れ替え
+      if (data.message !== undefined && data.message != null) {
+        var childDom = ""; // メッセージ追加
+
+        childDom += '<div class="mycomment"><p>' + data.message[key]['message'] + '</p></div>';
+        $('#bms_messages').append(childDom);
+      }
+    }) // Ajaxリクエスト失敗時の処理
+    .fail(function (data) {
+      debugger;
+      alert('メッセージ送信に失敗しました!');
+    });
+  }
 });
 
 /***/ }),

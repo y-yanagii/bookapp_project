@@ -168,6 +168,41 @@
             .fotterDiv {
                 border-radius: 12px;
             }
+
+            /* チャット画面のcontainer */
+            .chatsContainer {
+                height: 710px;
+            }
+
+            /* チャット画面のユーザ一覧領域 */
+            .usersUl {
+                height: 670px;
+                overflow-x: scroll;
+                border-left: solid 1px;
+                border-right: solid 1px;
+                border-radius: 1%;
+            }
+
+            /* メッセージ入力、送信領域div */
+            .messageInputDiv {
+                display: flex;
+            }
+
+            /* チャット画面のメッセージ領域 */
+            #bms_messages {
+                height: 609px;
+            }
+
+            /* チャット画面のメッセージ送信ボタン */
+            .messageSubmitBtn {
+                height:30px;
+                padding-top: 4px;
+            }
+
+            /* チャット画面のメッセージ入力テキストエリア */
+            #message {
+                height: 33px;
+            }
         </style>
     </head>
     <body>
@@ -272,5 +307,6 @@
         </div>
         <!-- ↑↑↑ログアウトモーダル領域↑↑↑ -->
         <script src="{{ asset('js/books.js') }}"></script>
+        <script src="{{ asset('js/messages.js') }}"></script>
     </body>
 </html>

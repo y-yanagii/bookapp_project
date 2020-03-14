@@ -15,7 +15,7 @@
             </div>
         </div>
         <!-- チャット領域 -->
-        <div class="container" style="height: 700px;">
+        <div class="container chatsContainer">
             <div class="row">
                 <!-- チャットヘッダ領域 -->
                 <div class="col-3">
@@ -28,40 +28,20 @@
             <!-- ユーザ一覧 -->
             <div class="row">
                 <div class="col-3">
-                    <ul class="list-group list-group-flush" style="height: 670px; overflow-x: scroll; border-left: solid 1px; border-right: solid 1px; border-radius: 1%;">
-                        <li class="list-group-item loginInfoLi"><i class="fas fa-user-astronaut"></i>User-A</li>
-                        <li class="list-group-item loginInfoLi"><i class="fas fa-user-astronaut"></i>User-B</li>
-                        <li class="list-group-item loginInfoLi"><i class="fas fa-user-astronaut"></i>User-C</li>
-                        <li class="list-group-item loginInfoLi"><i class="fas fa-user-astronaut"></i>User-D</li>
-                        <li class="list-group-item loginInfoLi"><i class="fas fa-user-astronaut"></i>User-E</li>
-                        <li class="list-group-item loginInfoLi"><i class="fas fa-user-astronaut"></i>User-F</li>
-                        <li class="list-group-item loginInfoLi"><i class="fas fa-user-astronaut"></i>User-G</li>
-                        <li class="list-group-item loginInfoLi"><i class="fas fa-user-astronaut"></i>User-H</li>
-                        <li class="list-group-item loginInfoLi"><i class="fas fa-user-astronaut"></i>User-I</li>
-                        <li class="list-group-item loginInfoLi"><i class="fas fa-user-astronaut"></i>User-J</li>
-                        <li class="list-group-item loginInfoLi"><i class="fas fa-user-astronaut"></i>User-K</li>
-                        <li class="list-group-item loginInfoLi"><i class="fas fa-user-astronaut"></i>User-L</li>
-                        <li class="list-group-item loginInfoLi"><i class="fas fa-user-astronaut"></i>User-M</li>
-                        <li class="list-group-item loginInfoLi"><i class="fas fa-user-astronaut"></i>User-N</li>
-                        <li class="list-group-item loginInfoLi"><i class="fas fa-user-astronaut"></i>User-O</li>
+                    <ul class="list-group list-group-flush usersUl">
+                        @foreach($users as $user)
+                        <li class="list-group-item loginInfoLi" data-user-id="{{ $user->id }}"><i class="fas fa-user-astronaut"></i>{{ $user->name }}</li>
+                        @endforeach
                     </ul>
                 </div>
                 <div class="col-9 bg-secondary">    
                     <!-- タイムラインメッセージ部分 -->
-                    <div id="bms_messages" style="height: 91%;">
-                        <!--メッセージ（左側）-->
-                        <div class="chatting">
-                            <p>これはメッセージテストです！！！</p>
-                        </div>
-                        <!--メッセージ（右側）-->
-                        <div class="mycomment">
-                            <p>これはメッセージテストです！！！</p>
-                        </div>
+                    <div id="bms_messages">
+                        <!--メッセージ領域-->
                     </div>
-
-                    <div style="display: flex;">
-                        <textarea name="message" id="message" class="messeageArea col-11 mr-2" placeholder="メッセージを入力してください" style="height: 33px;"></textarea>
-                        <button class="btn btn-primary col-1" style="height:30px; padding-top: 4px;">送信</button>
+                    <div class="messageInputDiv">
+                        <textarea name="message" id="message" class="messeageArea col-11 mr-2" placeholder="メッセージを入力してください"></textarea>
+                        <button class="btn btn-primary col-1 messageSubmitBtn">送信</button>
                     </div>
                 </div>
             </div>

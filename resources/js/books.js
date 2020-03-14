@@ -15,7 +15,7 @@ $('input[name="radioPurchaseType"]:radio').change(function() {
   // Ajaxリクエスト成功時の処理
   .done(function(data) {
     // 行の入れ替え
-    if (data.books.length > 0) {
+    if (data.books !== undefined && data.books.length > 0) {
       // 本情報行の削除
       $('.booksBody').empty();
 
@@ -54,16 +54,6 @@ $('.exportBook-tr').on('click', function() {
     $(this).removeClass("activeExport");
   } else {
     $(this).addClass("activeExport");
-  }
-});
-
-// ユーザ一覧押下時選択切替
-$('.loginInfoLi').on('click', function() {
-  if(!$(this).hasClass("active")) {
-    $('.loginInfoLi').removeClass("active");
-    $(this).addClass("active");
-    var $userName = $(this).text();
-    $('.user-to').text('● ' + $userName);
   }
 });
 
