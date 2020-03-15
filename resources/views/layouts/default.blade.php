@@ -136,7 +136,8 @@
                     max-width: 250px;
                     border-radius: 12px;
                     background: #30e852;
-                    font-size: 15px:
+                    font-size: 15px;
+                    text-align: left;
                 }
                 .mycomment p:after {
                     content: "";
@@ -191,6 +192,9 @@
             /* チャット画面のメッセージ領域 */
             #bms_messages {
                 height: 609px;
+                overflow-y: scroll;
+                padding: 14px;
+                margin-bottom: 11px;
             }
 
             /* チャット画面のメッセージ送信ボタン */

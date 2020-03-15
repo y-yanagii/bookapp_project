@@ -27,5 +27,5 @@ Route::post('/books/{id}', 'BooksController@update')->where('id', '[0-9]+');
 Route::post('/books/destroy/{id}', 'BooksController@destroy');
 Route::get('/books/search/{purchaseType}', 'BooksController@bookRefine');
 Route::get('/chats', 'ChatsController@index');
-Route::get('/chats/{id}', 'ChatsController@getChats');
 Route::post('/chats/add', 'ChatsController@add');
+Route::get('/chats/{id}', 'ChatsController@getChats')->where('id', '[0-9]+');

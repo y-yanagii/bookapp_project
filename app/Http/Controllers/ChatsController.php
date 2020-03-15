@@ -18,55 +18,43 @@ class ChatsController extends Controller
 
     // チャット一覧表示
     public function getChats($id) {
+
+        $currentUser = new User();
+
         // セッションにログインIDがない場合
         if (!session()->has('loginId')) {
             // ログインユーザのidを取得
             $currentUser = User::where('name', [Crypt::decryptString(session('loginName'))])->first();
+            // セッションにログインユーザIDを設定
             session(['loginId' => $currentUser->id]);
-
-            // ログインID
-            $currentId = $currentUser->id;
-            // 選択したユーザID
-            $choiceId = $id;
-            // ログインユーザから選択したユーザへのメッセージと、選択したユーザからログインユーザへのメッセージを取得
-            $messages =  Message::where(function($messages) use ($currentId, $choiceId) {
-                $messages->where('id', '=', $currentId)
-                      ->where('destination_id', '=', $choiceId);
-            })->orWhere(function($messages) use ($currentId, $choiceId) {
-                $messages->where('id', '=', $choiceId)
-                      ->where('destination_id', '=', $currentId);
-            })->orderBy('created_at', 'asc')->get();
-
-            return response()->json(['messages' => $messages, 'currentId' => $currentUser->id]);
         } else {
             $currentUser = User::where('id', session('loginId'))->first();
-
-            // ログインID
-            $currentId = $currentUser->id;
-            // 選択したユーザID
-            $choiceId = $id;
-            // ログインユーザから選択したユーザへのメッセージと、選択したユーザからログインユーザへのメッセージを取得
-            $messages =  Message::where(function($messages) use ($currentId, $choiceId) {
-                $messages->where('id', '=', $currentId)
-                      ->where('destination_id', '=', $choiceId);
-            })->orWhere(function($messages) use ($currentId, $choiceId) {
-                $messages->where('id', '=', $choiceId)
-                      ->where('destination_id', '=', $currentId);
-            })->orderBy('created_at', 'asc')->get();
-
-            return response()->json(['messages' => $messages, 'currentId' => $currentUser->id]);
         }
+
+        // ログインID
+        $currentId = $currentUser->id;
+        // 選択したユーザID
+        $choiceId = $id;
+        // ログインユーザから選択したユーザへのメッセージと、選択したユーザからログインユーザへのメッセージを取得
+        $messages =  Message::where(function($messages) use ($currentId, $choiceId) {
+            $messages->where('id', '=', $currentId)
+                  ->where('destination_id', '=', $choiceId);
+        })->orWhere(function($messages) use ($currentId, $choiceId) {
+            $messages->where('id', '=', $choiceId)
+                  ->where('destination_id', '=', $currentId);
+        })->orderBy('created_at', 'asc')->get();
+
+        return response()->json(['messages' => $messages, 'currentId' => $currentUser->id]);
     }
 
     // メッセージ送信保存処理
     public function add(Request $request) {
-        // TODOメッセージ送信時の通信でエラ〜ここから！！！！！！！！
-        $message = Message::create([
+        $messageInfo = Message::create([
             'id' => session('loginId'),
             'message' => $request->message,
             'destination_id' => $request->id
         ]);
 
-        return response()->json(['message' => $message]);
+        return response()->json(['message' => $messageInfo]);
     }
 }

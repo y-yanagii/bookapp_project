@@ -1,3 +1,19 @@
+$(function() {
+  getFlg = false;
+
+  // リアルタイム通信
+  getMessageData();
+});
+
+function getMessageData() {
+  if (getFlg) {
+    alert('seikou!!!');
+
+  }
+
+  setTimeout("getMessageData()", 5000);
+};
+
 // ユーザ一覧押下時選択切替
 $('.loginInfoLi').on('click', function() {
   if(!$(this).hasClass("active")) {
@@ -51,6 +67,8 @@ $('.loginInfoLi').on('click', function() {
         alert('チャット情報取得に失敗しました!');
     });
   }
+
+  getFlg = true;
 });
 
 // メッセージ送信時保存処理
@@ -59,19 +77,20 @@ $('.messageSubmitBtn').on('click', function() {
   if ($("#message").val() != "") {
     var $message = $("#message").val();
     var $sendUserId = $('.loginInfoLi.active').attr('data-user-id');
-
+    $message = $message.replace(/\r|\n|\r\n/g, "<br>");
+    
     $.ajax({
       headers: {
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       },
       url: '/chats/add',
-      type: 'POST',
-      data: {
+      type: 'post',
+      dataType: 'json',
+      data: JSON.stringify({
         'id': $sendUserId,
         'message': $message
-      },
-      contentType: false,
-      processData: false,
+      }),
+      contentType: "application/json",
     })
     // Ajaxリクエスト成功時の処理
     .done(function(data) {
@@ -80,13 +99,16 @@ $('.messageSubmitBtn').on('click', function() {
         var childDom = "";
 
         // メッセージ追加
-        childDom += '<div class="mycomment"><p>' + data.message[key]['message'] + '</p></div>';
+        childDom += '<div class="mycomment"><p>' + data.message['message'] + '</p></div>';
         $('#bms_messages').append(childDom);
+
+        // 入力メッセージをクリア
+        $("#message").val("");
       }
     })
     // Ajaxリクエスト失敗時の処理
-    .fail(function(data) {debugger;
-        alert('メッセージ送信に失敗しました!');
+    .fail(function(data) {
+      alert('メッセージ送信に失敗しました!');
     });
   }
 });
