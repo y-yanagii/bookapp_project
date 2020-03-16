@@ -37239,10 +37239,13 @@ $(function () {
 
 function getMessageData() {
   if (getFlg) {
-    alert('seikou!!!');
+    // 送信先のユーザID取得
+    var $userId = $('.loginInfoLi.active').attr('data-user-id');
+    getMessageAjax($userId);
   }
 
-  setTimeout("getMessageData()", 5000);
+  console.log('aaa');
+  setTimeout(getMessageData, 5000);
 }
 
 ; // ユーザ一覧押下時選択切替
@@ -37255,45 +37258,7 @@ $('.loginInfoLi').on('click', function () {
     var $userName = $(this).text();
     $('.user-to').text('● ' + $userName);
     var $userId = $(this).attr('data-user-id');
-    $.ajax({
-      headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      },
-      url: '/chats/' + $userId,
-      type: 'GET',
-      data: {
-        'id': $userId
-      },
-      contentType: false,
-      processData: false
-    }) // Ajaxリクエスト成功時の処理
-    .done(function (data) {
-      // メッセージの入れ替え
-      if (data.messages !== undefined && data.messages.length > 0) {
-        // メッセージ領域の削除
-        $('#bms_messages').empty(); // メッセージ領域の作成
-
-        var childDom = "";
-        Object.keys(data.messages).forEach(function (key) {
-          // メッセージ行の作成
-          if (data.messages[key]['id'] == data.currentId) {
-            // →右サイドメッセージ
-            childDom += '<div class="mycomment"><p>' + data.messages[key]['message'] + '</p></div>';
-          } else {
-            // ←左サイドメッセージ
-            childDom += '<div class="chatting"><p>' + data.messages[key]['message'] + '</p></div>';
-          }
-        }); // メッセージ領域要素追加
-
-        $(childDom).appendTo('#bms_messages');
-      } else {
-        // メッセージ領域の削除
-        $('#bms_messages').empty();
-      }
-    }) // Ajaxリクエスト失敗時の処理
-    .fail(function (data) {
-      alert('チャット情報取得に失敗しました!');
-    });
+    getMessageAjax($userId);
   }
 
   getFlg = true;
@@ -37334,6 +37299,48 @@ $('.messageSubmitBtn').on('click', function () {
     });
   }
 });
+
+function getMessageAjax($userId) {
+  $.ajax({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    url: '/chats/' + $userId,
+    type: 'GET',
+    data: {
+      'id': $userId
+    },
+    contentType: false,
+    processData: false
+  }) // Ajaxリクエスト成功時の処理
+  .done(function (data) {
+    // メッセージの入れ替え
+    if (data.messages !== undefined && data.messages.length > 0) {
+      // メッセージ領域の削除
+      $('#bms_messages').empty(); // メッセージ領域の作成
+
+      var childDom = "";
+      Object.keys(data.messages).forEach(function (key) {
+        // メッセージ行の作成
+        if (data.messages[key]['id'] == data.currentId) {
+          // →右サイドメッセージ
+          childDom += '<div class="mycomment"><p>' + data.messages[key]['message'] + '</p></div>';
+        } else {
+          // ←左サイドメッセージ
+          childDom += '<div class="chatting"><p>' + data.messages[key]['message'] + '</p></div>';
+        }
+      }); // メッセージ領域要素追加
+
+      $(childDom).appendTo('#bms_messages');
+    } else {
+      // メッセージ領域の削除
+      $('#bms_messages').empty();
+    }
+  }) // Ajaxリクエスト失敗時の処理
+  .fail(function (data) {
+    alert('チャット情報取得に失敗しました!');
+  });
+}
 
 /***/ }),
 
