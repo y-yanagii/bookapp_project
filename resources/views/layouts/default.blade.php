@@ -207,6 +207,15 @@
             #message {
                 height: 33px;
             }
+
+            /* エクスポートモーダルのタイトル領域 */
+            .exportBookTitle {
+                vertical-align: middle !important;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                max-width: 50px;
+            }
         </style>
     </head>
     <body>
@@ -221,7 +230,7 @@
         </div>
 
         <!-- ↓↓↓エクスポートモーダル領域↓↓↓ -->
-        <div class="modal fade exportModal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div id="jsonExportModalDiv" class="modal fade exportModal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
                 <div class="modal-content">
                     <div class="modal-header bg-dark">
@@ -231,7 +240,6 @@
                         </button>
                     </div>
                     <div class="modal-body exportModalTablesDiv">
-                        <form>
                         <table class="table table-hover">
                             <thead class="bg-primary">
                                 <tr>
@@ -241,46 +249,13 @@
                                 <th class="text-white" scope="col">アマゾンURl</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr class="exportBook-tr">
-                                    <th scope="row">1</th>
-                                    <td>Laravel入門</td>
-                                    <td>3690円</td>
-                                    <td></td>
-                                </tr>
-                                <tr class="exportBook-tr">
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                </tr>
-                                <tr class="exportBook-tr">
-                                    <th scope="row">3</th>
-                                    <td colspan="2">Larry the Bird</td>
-                                    <td>@twitter</td>
-                                </tr>
-                                <tr class="exportBook-tr">
-                                    <th scope="row">3</th>
-                                    <td colspan="2">Larry the Bird</td>
-                                    <td>@twitter</td>
-                                </tr>
-                                <tr class="exportBook-tr">
-                                    <th scope="row">3</th>
-                                    <td colspan="2">Larry the Bird</td>
-                                    <td>@twitter</td>
-                                </tr>
-                                <tr class="exportBook-tr">
-                                    <th scope="row">3</th>
-                                    <td colspan="2">Larry the Bird</td>
-                                    <td>@twitter</td>
-                                </tr>
+                            <tbody class="exportBookBody">
                             </tbody>
                         </table>
-                        </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
-                        <button type="button" class="btn btn-primary">エクスポート</button>
+                        <button type="button" class="btn btn-primary exportBtn">エクスポート</button>
                     </div>
                 </div>
             </div>
@@ -310,7 +285,5 @@
             </div>
         </div>
         <!-- ↑↑↑ログアウトモーダル領域↑↑↑ -->
-        <script src="{{ asset('js/books.js') }}"></script>
-        <script src="{{ asset('js/messages.js') }}"></script>
     </body>
 </html>

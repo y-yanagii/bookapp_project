@@ -89,4 +89,5 @@
                 </ul>
             </nav>
         </div>
+        <script src="{{ asset('js/books.js') }}"></script>
 @endsection

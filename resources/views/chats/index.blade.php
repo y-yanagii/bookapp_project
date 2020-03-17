@@ -46,4 +46,5 @@
                 </div>
             </div>
         </div>
+        <script src="{{ asset('js/messages.js') }}"></script>
 @endsection

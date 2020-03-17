@@ -175,4 +175,15 @@ class BooksController extends Controller
         $book->destroy($id);
         return response()->json(['id' => $id]);
     }
+
+    // エクスポート用本情報取得
+    public function getBookJson() {
+        $books = Book::latest()->get();
+        return response()->json(['books' => $books]);
+    }
+
+    // Jsonエクスポート処理
+    public function outputJson(Request $request) {
+        
+    }
 }

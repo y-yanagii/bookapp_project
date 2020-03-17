@@ -10,8 +10,9 @@ function getMessageData() {
     // 送信先のユーザID取得
     var $userId = $('.loginInfoLi.active').attr('data-user-id');
     getMessageAjax($userId);
+    
+    console.log('最新メッセージ取得');
   }
-  console.log('aaa');
   setTimeout(getMessageData, 5000);
 };
 

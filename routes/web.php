@@ -29,3 +29,5 @@ Route::get('/books/search/{purchaseType}', 'BooksController@bookRefine');
 Route::get('/chats', 'ChatsController@index');
 Route::post('/chats/add', 'ChatsController@add');
 Route::get('/chats/{id}', 'ChatsController@getChats')->where('id', '[0-9]+');
+Route::get('/export', 'BooksController@getBookJson');
+Route::post('/export/jsonoutput', 'BooksController@outputJson');

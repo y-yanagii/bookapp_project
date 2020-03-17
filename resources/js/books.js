@@ -1,3 +1,7 @@
+$(function() {
+  getFlg = false;
+});
+
 // 購入区分選択時
 $('input[name="radioPurchaseType"]:radio').change(function() {
   var purchaseType = $(this).val();
@@ -48,15 +52,6 @@ $('input[name="radioPurchaseType"]:radio').change(function() {
   });
 });
 
-// エクスポート選択時切替
-$('.exportBook-tr').on('click', function() {
-  if($(this).hasClass("activeExport")) {
-    $(this).removeClass("activeExport");
-  } else {
-    $(this).addClass("activeExport");
-  }
-});
-
 // 本一覧trタグ押下時の詳細表示
 $(document).on('click', '.bookRow', function(event) {
   var bookId = $(this).find(".deleteBook").attr('data-book-id');
@@ -97,4 +92,92 @@ $(document).on('click', '.deleteBook', function(e) {
   }
 
   e.stopPropagation();
+});
+
+// エクスポート選択時切替
+$(document).on('click', '.exportBook-tr', function() {
+  if($(this).hasClass("activeExport")) {
+    $(this).removeClass("activeExport");
+  } else {
+    $(this).addClass("activeExport");
+  }
+});
+
+// エクスポートモーダル表示時のイベント
+$('#jsonExportModalDiv').on('show.bs.modal', function (event) {
+  // 本情報の最新取得
+  $.ajax({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    url: '/export',
+    type: 'GET'
+  })
+  // Ajaxリクエスト成功時の処理
+  .done(function(data) {
+    // エクスポート用の本情報削除
+    $('.exportBookBody').empty();
+
+    // エクスポート用の本情報行の作成
+    var i = 1;
+    Object.keys(data.books).forEach(function (key) {
+      var childDom = "";
+      // 本情報行の作成
+      childDom = '<tr class="exportBook-tr" data-book-export-id="' + data.books[key]['id'] + '">';
+      childDom += '<th scope="row">' + i + '</th>';
+      childDom += '<td class="exportBookTitle">' + data.books[key]['book_name'] + '</td>';
+      childDom += '<td>' + data.books[key]['price'] + '</td>';
+      childDom += '<td>' + data.books[key]['amazon_url'] + '</td>';
+      childDom += '</tr>';
+      
+      $(childDom).appendTo('.exportBookBody');
+      i++;
+    });
+  })
+  // Ajaxリクエスト失敗時の処理
+  .fail(function(data) {
+      alert('Ajaxリクエスト失敗(getBookJson)');
+  });
+});
+
+// エクスポートモーダルを閉じる時のイベント
+$('#jsonExportModalDiv').on('hidden.bs.modal', function (event) {
+  // エクスポート用の本情報削除
+  $('.exportBookBody').empty();
+});
+
+// エクスポートボタン押下時
+$('.exportBtn').on('click', function(event) {
+  // 0件選択の場合アラート
+  if ($(".activeExport").length > 0) {
+    var bookIdArray = [];
+
+    $('.activeExport').each(function(event) {
+      bookIdArray.push($(this).attr("data-book-export-id"));
+    });
+
+    $.ajax({
+      headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      url: '/export/jsonoutput',
+      type: 'post',
+      dataType: 'json',
+      data: JSON.stringify({
+        'ids': bookIdArray
+      }),
+      contentType: "application/json",
+    })
+    // Ajaxリクエスト成功時の処理
+    .done(function(data) {
+      // Json出力メッセージ表示
+      
+    })
+    // Ajaxリクエスト失敗時の処理
+    .fail(function(data) {
+      alert('Jsonファイル出力に失敗しました!');
+    });
+  } else {
+    alert("出力するデータを選択してください");
+  }
 });
