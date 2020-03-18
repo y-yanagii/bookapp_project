@@ -184,6 +184,30 @@ class BooksController extends Controller
 
     // Jsonエクスポート処理
     public function outputJson(Request $request) {
+        $books = Book::whereIn('id', $request->ids)->get();
+        $jsonBooks = [];
+
+        foreach ($books as $book) {
+            $jsonBook = [
+                'id' => $book->id,
+                'book_name' => $book->book_name,
+                'price' => $book->price,
+                'amazon_url' => $book->amazon_url,
+            ];
+            $jsonBooks[] = $jsonBook;
+        }
+        $jsonBooks = json_encode($jsonBooks);
+
+        $now = Carbon::now();
+        $file_name = $now->format('YmdHis') . "_" . "book_json.json";
+
+        // ファイル作成
+        touch('/Users/yanagisawayoshiyuki/Downloads/' . $file_name);
         
+        // ファイル書き込み
+        $sjis =  mb_convert_encoding($jsonBooks, "SJIS", ["JIS", "UTF-8"]).PHP_EOL;
+        file_put_contents('/Users/yanagisawayoshiyuki/Downloads/' . $file_name, $sjis);
+
+        return $file_name;
     }
 }

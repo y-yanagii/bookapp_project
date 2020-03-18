@@ -171,11 +171,13 @@ $('.exportBtn').on('click', function(event) {
     // Ajaxリクエスト成功時の処理
     .done(function(data) {
       // Json出力メッセージ表示
-      
+      debugger;
+      alert('Jsonファイルを出力しました(' + data.responseText + ')');
     })
     // Ajaxリクエスト失敗時の処理
     .fail(function(data) {
-      alert('Jsonファイル出力に失敗しました!');
+      debugger;
+      alert('Jsonファイルを出力しました(' + data.responseText + ')');
     });
   } else {
     alert("出力するデータを選択してください");
