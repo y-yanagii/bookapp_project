@@ -1,5 +1,6 @@
 $(function() {
   getFlg = false;
+  activeType = $(".purchaseTypeParentDiv").find(".active");
 });
 
 // 購入区分選択時
@@ -171,15 +172,18 @@ $('.exportBtn').on('click', function(event) {
     // Ajaxリクエスト成功時の処理
     .done(function(data) {
       // Json出力メッセージ表示
-      debugger;
       alert('Jsonファイルを出力しました(' + data.responseText + ')');
     })
     // Ajaxリクエスト失敗時の処理
     .fail(function(data) {
-      debugger;
       alert('Jsonファイルを出力しました(' + data.responseText + ')');
     });
   } else {
     alert("出力するデータを選択してください");
   }
+});
+
+$(window).on('load', function() {
+  // 画面表示後、購入区分の選択状態を再現
+  activeType.addClass("active");
 });

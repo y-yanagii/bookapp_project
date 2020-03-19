@@ -18,8 +18,8 @@
                 </div>
 
                 <!-- 絞り込みラジオボタン領域 -->
-                <div class="col-lg-3 my-2 btn-group btn-group-toggle" data-toggle="buttons">
-                    <label class="btn btn-info <?php if(isset($_SESSION["purchaseType"]) && $_SESSION["purchaseType"] == "all") { echo('active'); } ?>">
+                <div class="col-lg-3 my-2 btn-group btn-group-toggle purchaseTypeParentDiv" data-toggle="buttons">
+                    <label class="btn btn-info <?php if(Session::has('purchaseType') && session('purchaseType') == "all") { echo('active'); } ?>">
                         <input type="radio" name="radioPurchaseType" id="option1" autocomplete="off" value="all" checkd> 全て
                     </label>
                     <label class="btn btn-info <?php if(Session::has('purchaseType') && session('purchaseType') == "0") { echo("active"); } ?>">
@@ -45,13 +45,13 @@
                 <table class="table table-hover booksInfoListTable">
                     <thead>
                         <tr class="bg-info">
-                            <th>#</th>
-                            <th>タイトル</th>
-                            <th>登録者</th>
-                            <th>購入区分</th>
-                            <th>進捗率</th>
-                            <th>更新日時</th>
-                            <th>×</th>
+                            <th class="text-white">#</th>
+                            <th class="text-white">タイトル</th>
+                            <th class="text-white">登録者</th>
+                            <th class="text-white">購入区分</th>
+                            <th class="text-white">進捗率</th>
+                            <th class="text-white">更新日時</th>
+                            <th class="text-white">×</th>
                         </tr>
                     </thead>
                     <tbody class="booksBody">
