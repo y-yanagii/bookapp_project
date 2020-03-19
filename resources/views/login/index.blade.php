@@ -43,7 +43,7 @@
             }
         </style>
     </head>
-    <body style='background-image: url("https://picsum.photos/600/600");'>
+    <body style='background-image: url("/storage/20200319130750_book_desctop.png");'>
         <!-- ↓↓↓ユーザ新規登録アラート↓↓↓ -->
         @if(Session::has('saveMessage'))
         <div class="alert alert-info alert-dismissible fade show" role="alert">

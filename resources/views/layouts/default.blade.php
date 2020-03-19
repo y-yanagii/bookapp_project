@@ -218,7 +218,7 @@
             }
         </style>
     </head>
-    <body>
+    <body style='background-image: url("/storage/20200319130750_book_desctop.png");'>
         @yield('content')
         <!-- Fotter領域 -->
         <div class="container bg-dark mt-4 fotterDiv">
